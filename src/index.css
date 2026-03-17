@@ -6,6 +6,6 @@
 
 @layer base {
   body {
-    @apply font-sans bg-slate-50 text-slate-900 leading-relaxed min-h-screen overflow-x-hidden antialiased scroll-smooth;
+    @apply font-sans bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 leading-relaxed min-h-screen overflow-x-hidden antialiased scroll-smooth transition-colors duration-300;
   }
 }
