@@ -19,12 +19,16 @@ const Projects = () => {
 
                 <motion.div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-10 mt-12" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}>
                     {projectsData.map((project) => (
-                        <motion.div key={project.id} variants={fadeIn} className="bg-white dark:bg-slate-900 border border-slate-900/10 dark:border-white/10 rounded-3xl p-4 transition-all duration-400 shadow-card flex flex-col h-full hover:-translate-y-2 hover:shadow-card-hover hover:border-slate-900/15 dark:hover:border-white/20">
+                        <motion.div key={project.id} variants={fadeIn} className="group bg-white dark:bg-slate-900 border border-slate-900/10 dark:border-white/10 rounded-3xl p-4 transition-all duration-400 shadow-card flex flex-col h-full hover:-translate-y-2 hover:shadow-card-hover hover:border-slate-900/15 dark:hover:border-white/20">
                             {project.image ? (
-                                <img src={project.image} alt={project.title} className="w-full h-[220px] rounded-2xl object-cover mb-6" />
+                                <div className="w-full h-[220px] rounded-2xl overflow-hidden mb-6">
+                                    <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                </div>
                             ) : (
-                                <div className="w-full h-[220px] rounded-2xl object-cover bg-slate-100 dark:bg-slate-800 mb-6" style={{ background: project.gradient }}>
-                                    {/* Placeholder for project thumbnail */}
+                                <div className="w-full h-[220px] rounded-2xl overflow-hidden mb-6">
+                                    <div className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" style={{ background: project.gradient }}>
+                                        {/* Placeholder for project thumbnail */}
+                                    </div>
                                 </div>
                             )}
                             <div className="px-2 pb-4 flex flex-col flex-grow">

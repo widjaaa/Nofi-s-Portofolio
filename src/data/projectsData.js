@@ -1,22 +1,12 @@
 export const projectsData = [
     {
         id: 1,
-        title: 'Finance Dashboard',
-        description: 'A comprehensive analytics dashboard handling thousands of data points with smooth rendering and interactive chart layers.',
-        tags: ['React', 'TypeScript', 'Recharts'],
-        githubUrl: '#',
+        title: 'Personal Web Portfolio',
+        description: 'A modern, dynamic personal portfolio website built with React, Vite, and Tailwind CSS. Features seamless Framer Motion animations, a responsive UI, and optimal performance.',
+        tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+        githubUrl: 'https://github.com/widjaaa/Nofi-s-Portofolio',
         liveSiteUrl: '#',
-        gradient: 'linear-gradient(45deg, #eef2ff, #e0e7ff)',
-        image: null, // You can replace this with '/images/your-project-image.jpg' in the future
-    },
-    {
-        id: 2,
-        title: 'E-Commerce Architecture',
-        description: 'A highly scalable headless e-commerce store with instantaneous page transitions and a custom cart context framework.',
-        tags: ['Next.js', 'Zustand', 'Stripe'],
-        githubUrl: '#',
-        liveSiteUrl: '#',
-        gradient: 'linear-gradient(45deg, #f0fdf4, #dcfce7)',
-        image: null,
+        gradient: 'linear-gradient(135deg, #667cea 0%, #764ba2 100%)',
+        image: '/images/projects/webPortofolio.png',
     }
 ];

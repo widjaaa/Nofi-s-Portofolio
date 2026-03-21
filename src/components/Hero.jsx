@@ -21,7 +21,7 @@ const Hero = () => {
                             <span>Hi, I'm Nofi</span>
                             <span className="not-italic inline-block whitespace-nowrap min-h-[1.2em]">
                                 <Typewriter
-                                    words={['Software Engineer', 'Frontend Developer', 'UI/UX Enthusiast', 'Cybersecurity Enthusiast']}
+                                    words={['Software Engineer', 'Frontend Developer', 'UI/UX Enthusiast', 'Cybersecurity Enthusiast', 'Fotografer', 'Videografer', 'Design Grafis']}
                                     loop={0}
                                     cursor
                                     cursorStyle='_'
