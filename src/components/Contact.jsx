@@ -33,9 +33,7 @@ const Contact = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
                         {/* Kolom Kiri - Informasi & Media Sosial */}
                         <div className="flex flex-col justify-center">
-                            <motion.div variants={fadeIn} className="inline-block mb-4 text-teal-600 dark:text-teal-400">
-                                <Sparkles size={32} />
-                            </motion.div>
+
                             <motion.h2 variants={fadeIn} className="font-serif text-3xl md:text-[2.5rem] mb-6 font-semibold text-slate-900 dark:text-white leading-[1.2]">
                                 Let's build something brilliant together.
                             </motion.h2>
