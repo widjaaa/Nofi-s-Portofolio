@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import { mobileMenuVariants, navItemVariant, staggerFast } from '../utils/motion';
 
 const navLinks = [
     { id: 'about', label: 'About' },
@@ -44,10 +46,10 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Check system preference and localStorage on initial load
+    // Check system preference and localStorage on initial load — default to light
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (savedTheme === 'dark') {
             setIsDarkMode(true);
             document.documentElement.classList.add('dark');
         } else {
@@ -73,75 +75,124 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'py-4 bg-slate-50/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-900/10 dark:border-white/10' : 'py-6'}`}>
-            <div className="w-full max-w-[1600px] mx-auto px-[5%] flex justify-between items-center">
-                <a href="#" className="font-serif text-2xl font-bold text-slate-900 dark:text-white tracking-tight" onClick={() => handleNavClick('')}>
-                    Nofi<span className="text-teal-600 dark:text-teal-400">.</span>
-                </a>
-                
-                <div className="flex items-center gap-4 md:gap-10">
-                    <ul className="hidden md:flex gap-10 list-none">
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+            scrolled 
+                ? 'py-3 bg-white/80 dark:bg-surface-900/80 backdrop-blur-xl border-b border-surface-200/50 dark:border-white/[0.06] shadow-[0_1px_3px_rgba(0,0,0,0.03)]' 
+                : 'py-5 bg-transparent'
+        }`}>
+            <div className="section-container flex justify-between items-center">
+                {/* Brand Removed per user request */}
+                <div className="flex-1" />
+
+                <div className="flex items-center gap-2 md:gap-8">
+                    {/* Desktop nav links */}
+                    <ul className="hidden md:flex gap-1 list-none bg-surface-100/60 dark:bg-surface-800/40 backdrop-blur-sm rounded-xl p-1">
                         {navLinks.map((link) => (
                             <li key={link.id}>
-                                <a 
-                                    href={`#${link.id}`} 
+                                <a
+                                    href={`#${link.id}`}
                                     onClick={() => handleNavClick(link.id)}
-                                    className={`relative font-medium text-[0.95rem] transition-all duration-300 py-1 ${
-                                        activeSection === link.id 
-                                            ? 'text-teal-600 dark:text-teal-400 font-semibold' 
-                                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                                    className={`relative px-3.5 py-2 rounded-lg text-[0.85rem] font-medium transition-all duration-300 block ${
+                                        activeSection === link.id
+                                            ? 'text-[#1e3a8a] dark:text-[#60a5fa] font-bold bg-white dark:bg-surface-700/80 shadow-sm'
+                                            : 'text-surface-500 dark:text-surface-400 hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:bg-white/50 dark:hover:bg-surface-700/40'
                                     }`}
                                 >
                                     {link.label}
-                                    {/* Indicator dot */}
-                                    {activeSection === link.id && (
-                                        <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-teal-600 dark:bg-teal-400"></span>
-                                    )}
                                 </a>
                             </li>
                         ))}
                     </ul>
 
-                    <div className="flex items-center gap-3">
-                        <button 
+                    <div className="flex items-center gap-2">
+                        {/* Dark mode toggle */}
+                        <button
                             onClick={toggleDarkMode}
-                            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                            className="relative p-2.5 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
                             aria-label="Toggle dark mode"
                         >
-                            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                            <AnimatePresence mode="wait">
+                                {isDarkMode ? (
+                                    <motion.div
+                                        key="sun"
+                                        initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                                        animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                                        exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                                        transition={{ duration: 0.25 }}
+                                    >
+                                        <Sun size={18} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="moon"
+                                        initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                                        animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                                        exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                                        transition={{ duration: 0.25 }}
+                                    >
+                                        <Moon size={18} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </button>
 
-                        <button 
+                        {/* Mobile menu toggle */}
+                        <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="md:hidden p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                            className="md:hidden p-2.5 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-all duration-300 active:scale-95"
                             aria-label="Toggle mobile menu"
                         >
-                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                            <AnimatePresence mode="wait">
+                                {isMobileMenuOpen ? (
+                                    <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                                        <X size={18} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                                        <Menu size={18} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* Mobile Menu Dropdown */}
-            <div className={`md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-900/10 dark:border-white/10 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[400px] py-6 shadow-xl' : 'max-h-0 py-0'}`}>
-                <ul className="flex flex-col items-center gap-6 list-none px-[5%]">
-                    {navLinks.map((link) => (
-                        <li key={link.id}>
-                            <a 
-                                href={`#${link.id}`} 
-                                onClick={() => handleNavClick(link.id)} 
-                                className={`text-[1.1rem] transition-colors ${
-                                    activeSection === link.id 
-                                        ? 'text-teal-600 dark:text-teal-400 font-semibold' 
-                                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                                }`}
-                            >
-                                {link.label}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {/* Mobile Menu — Full overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        variants={mobileMenuVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        className="md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-surface-900/95 backdrop-blur-2xl border-b border-surface-200/50 dark:border-white/[0.06] shadow-lg"
+                    >
+                        <motion.ul 
+                            className="flex flex-col items-center gap-2 list-none py-6 px-6"
+                            variants={staggerFast}
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            {navLinks.map((link) => (
+                                <motion.li key={link.id} variants={navItemVariant} className="w-full">
+                                    <a
+                                        href={`#${link.id}`}
+                                        onClick={() => handleNavClick(link.id)}
+                                        className={`block text-center py-3 px-6 rounded-xl text-base font-heading font-medium transition-all duration-300 ${
+                                            activeSection === link.id
+                                                ? 'text-[#1e3a8a] dark:text-[#60a5fa] font-bold bg-[#1e3a8a]/5 dark:bg-[#60a5fa]/10'
+                                                : 'text-surface-600 dark:text-surface-400 hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:bg-surface-50 dark:hover:bg-surface-800'
+                                        }`}
+                                    >
+                                        {link.label}
+                                    </a>
+                                </motion.li>
+                            ))}
+                        </motion.ul>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 };

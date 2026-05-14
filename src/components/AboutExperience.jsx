@@ -1,74 +1,137 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { fadeIn, staggerContainer } from '../utils/motion';
+import { fadeIn, slideInLeft, slideInRight, staggerContainer } from '../utils/motion';
 import { SiJavascript, SiTypescript, SiReact, SiLaravel, SiNodedotjs, SiTailwindcss, SiAdobepremierepro, SiCanva, SiAdobelightroom, SiGit, SiKalilinux } from 'react-icons/si';
 import { Radar } from 'lucide-react';
 
 const coreTechnologies = [
-    { name: 'JavaScript', icon: SiJavascript, color: 'text-[#F7DF1E]' },
-    { name: 'TypeScript', icon: SiTypescript, color: 'text-[#3178C6]' },
-    { name: 'React', icon: SiReact, color: 'text-[#61DAFB]' },
-    { name: 'Laravel', icon: SiLaravel, color: 'text-[#FF2D20]' },
-    { name: 'Node.js', icon: SiNodedotjs, color: 'text-[#339933]' },
-    { name: 'Tailwind CSS', icon: SiTailwindcss, color: 'text-[#06B6D4]' },
-    { name: 'Premiere Pro', icon: SiAdobepremierepro, color: 'text-[#9999FF]' },
-    { name: 'Canva', icon: SiCanva, color: 'text-[#00C4CC]' },
-    { name: 'Lightroom', icon: SiAdobelightroom, color: 'text-[#31A8FF]' },
-    { name: 'Git', icon: SiGit, color: 'text-[#F05032]' },
-    { name: 'Kali Linux', icon: SiKalilinux, color: 'text-[#557C94]' },
-    { name: 'Nmap', icon: Radar, color: 'text-[#254B87]' }
+    { name: 'JavaScript', icon: SiJavascript },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'React', icon: SiReact },
+    { name: 'Laravel', icon: SiLaravel },
+    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'Tailwind CSS', icon: SiTailwindcss },
+    { name: 'Premiere Pro', icon: SiAdobepremierepro },
+    { name: 'Canva', icon: SiCanva },
+    { name: 'Lightroom', icon: SiAdobelightroom },
+    { name: 'Git', icon: SiGit },
+    { name: 'Kali Linux', icon: SiKalilinux },
+    { name: 'Nmap', icon: Radar }
 ];
 
 const AboutExperience = () => {
     return (
-        <section className="py-12 md:py-24 lg:py-16 flex flex-col justify-center" id="experience">
-            <div className="w-full max-w-[1600px] mx-auto px-[6%] lg:px-[5%]">
-                <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-24">
+        <section className="py-20 md:py-28 lg:py-32" id="about">
+            <div className="section-container">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
                     {/* About Text */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}>
-                        <motion.h2 variants={fadeIn} className="font-serif text-4xl lg:text-[2.5rem] mb-4 font-semibold text-slate-900 dark:text-white leading-[1.2]" id="about">About Me</motion.h2>
-                        <motion.div variants={fadeIn} className="text-slate-500 dark:text-slate-400 mb-8 flex-grow text-[1.1rem]">
-                            <p className="mb-4">
-                                I believe that great work is inherently invisible—it allows users to accomplish their goals seamlessly. With a background deeply rooted in <strong className="font-semibold text-slate-900 dark:text-white">Web Development</strong>, as well as a strong passion for <strong className="font-semibold text-slate-900 dark:text-white">Graphic Design</strong> and <strong className="font-semibold text-slate-900 dark:text-white">Photography/Videography</strong>, I bridge the gap between technical functionality and visual aesthetics.
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
+                        {/* Section label */}
+                        <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
+                            <div className="accent-line" />
+                            <span className="text-[#1e3a8a] dark:text-[#60a5fa] font-heading font-semibold text-sm uppercase tracking-wider">About Me</span>
+                        </motion.div>
+
+                        <motion.h2 variants={slideInLeft} className="section-heading mb-6">
+                            Building digital experiences with <span className="gradient-text dark:hidden">purpose</span><span className="hidden dark:inline gradient-text-dark">purpose</span>
+                        </motion.h2>
+
+                        <motion.div variants={fadeIn} className="text-surface-500 dark:text-surface-400 space-y-4 text-[1.05rem] leading-relaxed">
+                            <p>
+                                I believe that great work is inherently invisible—it allows users to accomplish their goals seamlessly. With a background deeply rooted in <strong className="font-semibold text-surface-800 dark:text-surface-200">Web Development</strong>, as well as a strong passion for <strong className="font-semibold text-surface-800 dark:text-surface-200">Graphic Design</strong> and <strong className="font-semibold text-surface-800 dark:text-surface-200">Photography/Videography</strong>, I bridge the gap between technical functionality and visual aesthetics.
                             </p>
                             <p>
-                                Beyond writing code, I love capturing moments and creating compelling visual stories. Most of my creative portfolios and completed multimedia works are actively published on my social media channels, particularly on <a href="https://www.youtube.com/@nofiardimanw" target="_blank" rel="noopener noreferrer" className="text-teal-600 dark:text-teal-400 font-semibold hover:underline">YouTube</a>.
+                                Beyond writing code, I love capturing moments and creating compelling visual stories. Most of my creative portfolios and completed multimedia works are actively published on my social media channels, particularly on <a href="https://www.youtube.com/@nofiardimanw" target="_blank" rel="noopener noreferrer" className="text-[#1e3a8a] dark:text-[#60a5fa] font-semibold hover:underline underline-offset-4 decoration-[#1e3a8a]/30 hover:decoration-[#60a5fa] transition-colors">YouTube</a>.
                             </p>
                         </motion.div>
 
-                        <motion.h3 variants={fadeIn} className="font-sans text-xl mb-4 font-semibold text-slate-900 dark:text-white">Core Technologies</motion.h3>
-                        <motion.div variants={fadeIn} className="flex flex-wrap gap-3 mb-8">
-                            {coreTechnologies.map(tech => (
-                                <span key={tech.name} className="flex items-center gap-2 text-sm px-4 py-2 rounded-xl bg-white dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 font-medium border border-slate-900/10 dark:border-white/10 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md dark:hover:bg-slate-700">
-                                    <tech.icon className={`text-base ${tech.color}`} />
-                                    {tech.name}
-                                </span>
-                            ))}
+                        {/* Core Technologies */}
+                        <motion.div variants={fadeIn} className="mt-10">
+                            <h3 className="font-heading text-lg mb-5 font-semibold text-surface-900 dark:text-white flex items-center gap-2">
+                                Core Technologies
+                                <span className="w-2 h-2 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa]" />
+                            </h3>
+                            <div className="flex flex-wrap gap-2.5">
+                                {coreTechnologies.map((tech, index) => (
+                                    <motion.span
+                                        key={tech.name}
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.04, duration: 0.3 }}
+                                        whileHover={{ y: -3, scale: 1.05 }}
+                                        className={`group flex items-center gap-2 text-sm px-3.5 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-200 font-medium border border-surface-200 dark:border-surface-700 cursor-default transition-all duration-300 hover:shadow-md hover:border-[#1e3a8a] dark:hover:border-[#60a5fa]`}
+                                    >
+                                        <tech.icon className="text-base text-surface-900 dark:text-white group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300 transform group-hover:scale-110" />
+                                        {tech.name}
+                                    </motion.span>
+                                ))}
+                            </div>
                         </motion.div>
                     </motion.div>
 
                     {/* Experience Timeline */}
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}>
-                        <motion.h2 variants={fadeIn} className="font-serif text-4xl lg:text-[2.5rem] mb-4 font-semibold text-slate-900 dark:text-white leading-[1.2]">Experience</motion.h2>
-                        <motion.div variants={fadeIn} className="relative pl-8 border-l border-slate-900/10 dark:border-white/10 flex flex-col gap-10 mt-8">
-                            <div className="relative">
-                                <div className="absolute -left-[2.35rem] top-1.5 w-3 h-3 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-slate-900 dark:border-white"></div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400 mb-1 font-medium">Nov 15, 2025 – Nov 19, 2025</div>
-                                <h3 className="font-sans text-lg font-semibold text-slate-900 dark:text-white mb-2">Graphic Designer (Contract) <span className="text-slate-400 font-normal">@ PT. CIPTA MEGAH LESTARINDO, Tangerang</span></h3>
-                                <ul className="text-[0.95rem] text-slate-500 dark:text-slate-400 list-disc pl-5 flex flex-col gap-1.5">
-                                    <li>Completed a visual design project for a plastic processing machine marketing brochure within a tight deadline.</li>
-                                    <li>Collaborate with the marketing team to ensure brand identity consistency in every design asset produced.</li>
-                                </ul>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} id="experience">
+                        {/* Section label */}
+                        <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
+                            <div className="accent-line" />
+                            <span className="text-[#1e3a8a] dark:text-[#60a5fa] font-heading font-semibold text-sm uppercase tracking-wider">Experience</span>
+                        </motion.div>
+
+                        <motion.h2 variants={slideInRight} className="section-heading mb-10">
+                            My professional journey
+                        </motion.h2>
+
+                        <motion.div variants={fadeIn} className="relative pl-8 border-l-2 border-[#1e3a8a]/30 dark:border-[#60a5fa]/30 flex flex-col gap-10">
+                            {/* Experience 1 */}
+                            <div className="timeline-node relative">
+                                <div className="glass-card p-5 sm:p-6 rounded-xl hover:shadow-card-hover dark:hover:shadow-card-dark-hover transition-all duration-300 hover:-translate-y-0.5">
+                                    <span className="inline-block px-3 py-1 mb-3 text-xs font-heading font-semibold rounded-lg bg-[#1e3a8a]/5 dark:bg-[#60a5fa]/10 border border-[#1e3a8a]/20 dark:border-[#60a5fa]/20 text-[#1e3a8a] dark:text-[#60a5fa]">
+                                        Nov 15 – Nov 19, 2025
+                                    </span>
+                                    <h3 className="font-heading text-lg font-bold text-surface-900 dark:text-white mb-1">
+                                        Graphic Designer
+                                        <span className="text-surface-400 dark:text-surface-500 font-normal text-base ml-1">(Contract)</span>
+                                    </h3>
+                                    <p className="text-[#1e3a8a] dark:text-[#60a5fa] text-sm font-medium mb-3">
+                                        PT. Cipta Megah Lestarindo, Tangerang
+                                    </p>
+                                    <ul className="text-[0.9rem] text-surface-500 dark:text-surface-400 space-y-2">
+                                        <li className="flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa] mt-2 shrink-0" />
+                                            Completed a visual design project for a plastic processing machine marketing brochure within a tight deadline.
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa] mt-2 shrink-0" />
+                                            Collaborate with the marketing team to ensure brand identity consistency in every design asset produced.
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
 
-                            <div className="relative">
-                                <div className="absolute -left-[2.35rem] top-1.5 w-3 h-3 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-slate-900 dark:border-white"></div>
-                                <div className="text-sm text-slate-500 dark:text-slate-400 mb-1 font-medium">Oct 2024 – Oct 2025</div>
-                                <h3 className="font-sans text-lg font-semibold text-slate-900 dark:text-white mb-2">Web Developer <span className="text-slate-400 font-normal">@ President University Student Council, Cikarang</span></h3>
-                                <ul className="text-[0.95rem] text-slate-500 dark:text-slate-400 list-disc pl-5 flex flex-col gap-1.5">
-                                    <li>Weekly website maintenance, checking for security vulnerabilities and bugs.</li>
-                                    <li>Successfully integrated from native PHP to the Laravel framework.</li>
-                                </ul>
+                            {/* Experience 2 */}
+                            <div className="timeline-node relative">
+                                <div className="glass-card p-5 sm:p-6 rounded-xl hover:shadow-card-hover dark:hover:shadow-card-dark-hover transition-all duration-300 hover:-translate-y-0.5">
+                                    <span className="inline-block px-3 py-1 mb-3 text-xs font-heading font-semibold rounded-lg bg-accent-50 dark:bg-accent-900/20 text-[#1e3a8a] dark:text-[#60a5fa]">
+                                        Oct 2024 – Oct 2025
+                                    </span>
+                                    <h3 className="font-heading text-lg font-bold text-surface-900 dark:text-white mb-1">
+                                        Web Developer
+                                    </h3>
+                                    <p className="text-[#1e3a8a] dark:text-[#60a5fa] text-sm font-medium mb-3">
+                                        President University Student Council, Cikarang
+                                    </p>
+                                    <ul className="text-[0.9rem] text-surface-500 dark:text-surface-400 space-y-2">
+                                        <li className="flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa] mt-2 shrink-0" />
+                                            Weekly website maintenance, checking for security vulnerabilities and bugs.
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa] mt-2 shrink-0" />
+                                            Successfully integrated from native PHP to the Laravel framework.
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>
