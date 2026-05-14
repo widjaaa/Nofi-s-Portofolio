@@ -110,9 +110,11 @@ const Activities = () => {
                             {/* Content */}
                             <div className="absolute inset-0 p-5 sm:p-7 flex flex-col justify-end text-white">
                                 <div className="translate-y-3 group-hover:translate-y-0 transition-transform duration-400">
-                                    <span className="inline-flex items-center px-3 py-1 mb-3 text-xs font-heading font-semibold tracking-wider rounded-lg bg-white/15 backdrop-blur-md border border-white/20">
-                                        {activity.date}
-                                    </span>
+                                    {activity.date && activity.date.toLowerCase() !== 'recent' && (
+                                        <span className="inline-flex items-center px-3 py-1 mb-3 text-xs font-heading font-semibold tracking-wider rounded-lg bg-white/15 backdrop-blur-md border border-white/20">
+                                            {activity.date}
+                                        </span>
+                                    )}
                                     <h3 className="font-heading text-lg sm:text-xl font-bold mb-2 leading-tight">
                                         {activity.title}
                                     </h3>
