@@ -7,6 +7,6 @@ export const projectsData = [
         githubUrl: 'https://github.com/widjaaa/Nofi-s-Portofolio',
         liveSiteUrl: 'https://nofi-s-portofolio.vercel.app/',
         gradient: 'linear-gradient(135deg, #667cea 0%, #764ba2 100%)',
-        image: '/images/projects/webPortofolio.png',
+        image: '/images/projects/newImageWeb.png',
     }
 ];
