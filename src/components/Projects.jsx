@@ -35,7 +35,7 @@ const Projects = () => {
                     viewport={{ once: true, margin: "-50px" }}
                     variants={staggerContainer}
                 >
-                    {projectsData.map((project, index) => (
+                    {projectsData.map((project) => (
                         <motion.div
                             key={project.id}
                             variants={scaleUp}
@@ -96,12 +96,16 @@ const Projects = () => {
 
                                     {/* Action buttons */}
                                     <div className="flex gap-3 mt-auto">
-                                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline !px-5 !py-2.5 !text-sm !rounded-lg">
-                                            <Github size={15} /> Code
-                                        </a>
-                                        <a href={project.liveSiteUrl} target="_blank" rel="noopener noreferrer" className="btn-primary !px-5 !py-2.5 !text-sm !rounded-lg shimmer-btn">
-                                            Live Site <ArrowRight size={15} />
-                                        </a>
+                                        {project.githubUrl && (
+                                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline !px-5 !py-2.5 !text-sm !rounded-lg flex items-center gap-1.5">
+                                                <Github size={15} /> Code
+                                            </a>
+                                        )}
+                                        {project.liveSiteUrl && (
+                                            <a href={project.liveSiteUrl} target="_blank" rel="noopener noreferrer" className="btn-primary !px-5 !py-2.5 !text-sm !rounded-lg shimmer-btn flex items-center gap-1.5">
+                                                Live Site <ArrowRight size={15} />
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>

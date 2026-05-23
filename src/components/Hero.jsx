@@ -61,9 +61,9 @@ const Hero = () => {
                             <a href="#projects" className="btn-primary shimmer-btn">
                                 View Projects <ArrowRight size={18} />
                             </a>
-                            <a href="/cv/cvnofi.pdf" download="cvnofi.pdf" className="btn-secondary">
+                            {/* <a href="/cv/cvnofi.pdf" download="cvnofi.pdf" className="btn-secondary">
                                 Download CV <FileText size={18} />
-                            </a>
+                            </a> */}
                             <a href="#contact" className="btn-outline">
                                 Let's Talk
                             </a>
