@@ -98,6 +98,7 @@ const Activities = () => {
                                 <img 
                                     src={activity.image} 
                                     alt={activity.title} 
+                                    loading="lazy"
                                     className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" 
                                 />
                             ) : (

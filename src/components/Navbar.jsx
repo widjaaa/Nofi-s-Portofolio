@@ -21,7 +21,13 @@ const Navbar = () => {
     // Active state scroll spy
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            const isScrolled = window.scrollY > 50;
+            setScrolled(isScrolled);
+
+            // Auto-close mobile menu on scroll
+            if (isScrolled) {
+                setIsMobileMenuOpen(false);
+            }
 
             // Cek section yang sedang aktif
             const sections = navLinks.map(link => link.id);

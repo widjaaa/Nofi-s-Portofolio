@@ -49,6 +49,7 @@ const Projects = () => {
                                             src={project.image}
                                             alt={project.title}
                                             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                                            loading="lazy"
                                         />
                                     ) : (
                                         <div
@@ -97,12 +98,12 @@ const Projects = () => {
                                     {/* Action buttons */}
                                     <div className="flex gap-3 mt-auto">
                                         {project.githubUrl && (
-                                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline !px-5 !py-2.5 !text-sm !rounded-lg flex items-center gap-1.5">
+                                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm flex items-center gap-1.5">
                                                 <Github size={15} /> Code
                                             </a>
                                         )}
                                         {project.liveSiteUrl && (
-                                            <a href={project.liveSiteUrl} target="_blank" rel="noopener noreferrer" className="btn-primary !px-5 !py-2.5 !text-sm !rounded-lg shimmer-btn flex items-center gap-1.5">
+                                            <a href={project.liveSiteUrl} target="_blank" rel="noopener noreferrer" className="btn-primary btn-sm shimmer-btn flex items-center gap-1.5">
                                                 Live Site <ArrowRight size={15} />
                                             </a>
                                         )}

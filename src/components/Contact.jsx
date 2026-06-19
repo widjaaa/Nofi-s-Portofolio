@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTiktok, FaYoutube, FaWhatsapp, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { fadeIn, staggerContainer, slideInLeft, slideInRight } from '../utils/motion';
+import ReCAPTCHA from 'react-google-recaptcha';
+import emailjs from '@emailjs/browser';
+
+// ⚠️ GANTI dengan Site Key Anda dari https://www.google.com/recaptcha/admin
+const RECAPTCHA_SITE_KEY = '6LelgictAAAAAGFB2LuN_WiQVKwK92bJQayEk1g9';
+
+// ⚠️ GANTI dengan Kredensial EmailJS Anda dari https://dashboard.emailjs.com/
+const EMAILJS_SERVICE_ID = 'service_uqg1z2i';
+const EMAILJS_TEMPLATE_ID = 'template_umqvkrr';
+const EMAILJS_PUBLIC_KEY = 'BiM76pETuP1xx-2zc';
 
 const socialLinks = [
     { icon: FaEnvelope, label: 'Email', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=wijayanovi329@gmail.com', hoverColor: 'hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20' },
@@ -14,12 +24,58 @@ const socialLinks = [
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [captchaToken, setCaptchaToken] = useState(null);
+    const [captchaError, setCaptchaError] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+    const recaptchaRef = useRef(null);
 
-    const handleWhatsAppSubmit = (e) => {
+    const handleEmailSubmit = (e) => {
         e.preventDefault();
-        const phoneNumber = "6281299735756";
-        const text = `Halo Nofi, saya ${formData.name} (${formData.email}).\n\n${formData.message}`;
-        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`, '_blank');
+        if (!captchaToken) {
+            setCaptchaError(true);
+            return;
+        }
+        setCaptchaError(false);
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+            'g-recaptcha-response': captchaToken
+        };
+
+        emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            templateParams,
+            EMAILJS_PUBLIC_KEY
+        )
+        .then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setCaptchaToken(null);
+            if (recaptchaRef.current) recaptchaRef.current.reset();
+        })
+        .catch((err) => {
+            console.error('FAILED...', err);
+            setSubmitStatus('error');
+        })
+        .finally(() => {
+            setIsSubmitting(false);
+        });
+    };
+
+    const handleCaptchaChange = (token) => {
+        setCaptchaToken(token);
+        if (token) setCaptchaError(false);
+    };
+
+    const handleCaptchaExpired = () => {
+        setCaptchaToken(null);
     };
 
     const handleChange = (e) => {
@@ -69,7 +125,7 @@ const Contact = () => {
 
                             {/* Right — Form */}
                             <motion.div variants={slideInRight}>
-                                <form onSubmit={handleWhatsAppSubmit} className="flex flex-col gap-5">
+                                <form onSubmit={handleEmailSubmit} className="flex flex-col gap-5">
                                     <div className="input-sweep relative">
                                         <label htmlFor="name" className="block text-xs font-heading font-semibold text-surface-500 dark:text-surface-400 mb-2 uppercase tracking-wider">Name</label>
                                         <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name"
@@ -85,9 +141,53 @@ const Contact = () => {
                                         <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows="4" placeholder="How can I help you?"
                                             className="w-full px-4 py-3.5 rounded-xl border border-surface-200 dark:border-surface-700 focus:outline-none focus:border-accent-400 dark:focus:border-accent-500 transition-colors resize-none bg-surface-50/50 dark:bg-surface-900/50 text-surface-900 dark:text-white placeholder:text-surface-300 dark:placeholder:text-surface-600 text-sm" required />
                                     </div>
-                                    <button type="submit" className="mt-1 btn-primary w-full justify-center shimmer-btn !rounded-xl">
-                                        Send via WhatsApp <FaWhatsapp size={18} />
+                                    {/* reCAPTCHA widget */}
+                                    <div className="flex flex-col items-start gap-2">
+                                        <ReCAPTCHA
+                                            ref={recaptchaRef}
+                                            sitekey={RECAPTCHA_SITE_KEY}
+                                            onChange={handleCaptchaChange}
+                                            onExpired={handleCaptchaExpired}
+                                            theme="light"
+                                        />
+                                        {captchaError && (
+                                            <p className="text-red-500 dark:text-red-400 text-xs font-medium animate-pulse">
+                                                ⚠️ Mohon selesaikan CAPTCHA terlebih dahulu.
+                                            </p>
+                                        )}
+                                    </div>
+                                    <button 
+                                        type="submit" 
+                                        disabled={isSubmitting || !captchaToken}
+                                        className={`mt-1 btn-primary w-full justify-center shimmer-btn !rounded-xl transition-all flex items-center gap-2 ${
+                                            (isSubmitting || !captchaToken) ? 'opacity-60 cursor-not-allowed' : ''
+                                        }`}
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                Sending...
+                                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                            </>
+                                        ) : (
+                                            <>
+                                                Send Message <FaEnvelope size={18} />
+                                            </>
+                                        )}
                                     </button>
+
+                                    {submitStatus === 'success' && (
+                                        <p className="text-green-500 dark:text-green-400 text-sm font-medium mt-2 bg-green-500/10 border border-green-500/20 px-4 py-2.5 rounded-xl animate-fade-in text-center">
+                                            🎉 Pesan Anda berhasil dikirim! Saya akan segera menghubungi Anda.
+                                        </p>
+                                    )}
+                                    {submitStatus === 'error' && (
+                                        <p className="text-red-500 dark:text-red-400 text-sm font-medium mt-2 bg-red-500/10 border border-red-500/20 px-4 py-2.5 rounded-xl animate-fade-in text-center">
+                                            ❌ Gagal mengirim pesan. Silakan coba lagi nanti.
+                                        </p>
+                                    )}
                                 </form>
                             </motion.div>
                         </div>

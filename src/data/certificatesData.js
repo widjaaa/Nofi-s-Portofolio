@@ -111,14 +111,14 @@ export const certificatesData = [
         id: 13,
         title: 'REGULAR OFFLINE - INTRO TO PYTHON',
         issuer: 'Coding Studio',
-        date: 'Juni 22, 2025',
+        date: 'June 22, 2025',
         validationUrl: '#',
         iconColor: 'text-[#0BA360]',
         image: '/images/certificates/intro to python.jpg'
     },
     {
         id: 14,
-        title: 'REGULAR OFFLINE - Cybersecurity Beginer',
+        title: 'REGULAR OFFLINE - Cybersecurity Beginner',
         issuer: 'Coding Studio',
         date: 'July 12, 2025',
         validationUrl: '#',

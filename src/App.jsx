@@ -4,19 +4,30 @@ import './App.css';
 // Import Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Stats from './components/Stats';
 import AboutExperience from './components/AboutExperience';
 import Projects from './components/Projects';
 import Activities from './components/Activities';
 import Certificates from './components/Certificates';
 import Contact from './components/Contact';
 
+// Import Interactive Enhancements
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
+import CursorGlow from './components/CursorGlow';
+
 const App = () => {
     return (
         <div className="relative noise-overlay">
-            {/* Background orbs removed for strictly clean B&W background */}
+            {/* Global interactive effects */}
+            <ScrollProgress />
+            <CursorGlow />
+            <BackToTop />
+
             <Navbar />
             <main>
                 <Hero />
+                <Stats />
                 <AboutExperience />
                 <Projects />
                 <Activities />
