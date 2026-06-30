@@ -85,7 +85,7 @@ const Stats = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-16 md:py-20 relative">
+        <section ref={sectionRef} className="py-12 md:py-16 relative">
             {/* Subtle background */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface-50/50 to-transparent dark:via-surface-800/20 -z-10" />
             

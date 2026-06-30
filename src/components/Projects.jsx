@@ -6,7 +6,7 @@ import { projectsData } from '../data/projectsData';
 
 const Projects = () => {
     return (
-        <section className="py-20 md:py-28 lg:py-32 relative" id="projects">
+        <section className="py-12 md:py-16 lg:py-20 relative" id="projects">
             {/* Background accent */}
             <div className="absolute inset-0 bg-gradient-to-b from-surface-100/50 via-surface-50 to-surface-100/50 dark:from-surface-800/30 dark:via-surface-900 dark:to-surface-800/30 -z-10" />
 

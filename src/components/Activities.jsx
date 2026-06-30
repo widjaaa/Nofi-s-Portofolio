@@ -41,7 +41,7 @@ const Activities = () => {
     };
 
     return (
-        <section className="py-20 md:py-28 lg:py-32" id="activities">
+        <section className="py-12 md:py-16 lg:py-20" id="activities">
             <div className="section-container">
                 {/* Section header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">

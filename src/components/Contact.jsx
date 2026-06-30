@@ -5,13 +5,11 @@ import { fadeIn, staggerContainer, slideInLeft, slideInRight } from '../utils/mo
 import ReCAPTCHA from 'react-google-recaptcha';
 import emailjs from '@emailjs/browser';
 
-// ⚠️ GANTI dengan Site Key Anda dari https://www.google.com/recaptcha/admin
-const RECAPTCHA_SITE_KEY = '6LelgictAAAAAGFB2LuN_WiQVKwK92bJQayEk1g9';
-
-// ⚠️ GANTI dengan Kredensial EmailJS Anda dari https://dashboard.emailjs.com/
-const EMAILJS_SERVICE_ID = 'service_uqg1z2i';
-const EMAILJS_TEMPLATE_ID = 'template_umqvkrr';
-const EMAILJS_PUBLIC_KEY = 'BiM76pETuP1xx-2zc';
+// Environment variables (stored in .env, not committed to Git)
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const socialLinks = [
     { icon: FaEnvelope, label: 'Email', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=wijayanovi329@gmail.com', hoverColor: 'hover:text-accent-600 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20' },
@@ -54,14 +52,12 @@ const Contact = () => {
             EMAILJS_PUBLIC_KEY
         )
         .then((response) => {
-            console.log('SUCCESS!', response.status, response.text);
             setSubmitStatus('success');
             setFormData({ name: '', email: '', message: '' });
             setCaptchaToken(null);
             if (recaptchaRef.current) recaptchaRef.current.reset();
         })
         .catch((err) => {
-            console.error('FAILED...', err);
             setSubmitStatus('error');
         })
         .finally(() => {
@@ -83,7 +79,7 @@ const Contact = () => {
     };
 
     return (
-        <section className="py-20 md:py-28 lg:py-32" id="contact">
+        <section className="py-12 md:py-16 lg:py-20" id="contact">
             <div className="section-container max-w-[1100px]">
                 <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                     {/* Section header */}

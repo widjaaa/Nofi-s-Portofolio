@@ -43,9 +43,9 @@ const App = () => {
                         <p className="font-heading font-medium text-surface-900 dark:text-white">
                             © {new Date().getFullYear()} Nofi Ardiman Widjaya
                         </p>
-                        <p className="text-surface-500 dark:text-surface-400">
+                        {/* <p className="text-surface-500 dark:text-surface-400">
                             Crafted with care & curiosity
-                        </p>
+                        </p> */}
                     </div>
                 </div>
             </footer>

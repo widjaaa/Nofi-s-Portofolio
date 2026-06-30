@@ -23,7 +23,7 @@ const Certificates = () => {
     }, []);
 
     return (
-        <section className="py-20 md:py-28 lg:py-32 relative" id="certificates">
+        <section className="py-12 md:py-16 lg:py-20 relative" id="certificates">
             <div className="absolute inset-0 bg-gradient-to-b from-surface-100/50 via-surface-50 to-surface-100/50 dark:from-surface-800/30 dark:via-surface-900 dark:to-surface-800/30 -z-10" />
             <div className="section-container">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">

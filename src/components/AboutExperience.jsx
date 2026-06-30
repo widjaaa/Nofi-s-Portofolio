@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn, slideInLeft, slideInRight, staggerContainer } from '../utils/motion';
 import { SiJavascript, SiTypescript, SiReact, SiLaravel, SiNodedotjs, SiTailwindcss, SiAdobepremierepro, SiCanva, SiAdobelightroom, SiGit, SiKalilinux } from 'react-icons/si';
@@ -20,11 +20,98 @@ const coreTechnologies = [
 ];
 
 const AboutExperience = () => {
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        let animationFrameId;
+        let isHovered = false;
+        let isMouseDown = false;
+        let startX;
+        let scrollLeft;
+
+        const scrollSpeed = 0.6; // Kecepatan auto-scroll
+
+        const autoScroll = () => {
+            if (!isHovered && !isMouseDown) {
+                el.scrollLeft += scrollSpeed;
+                
+                // seamless loop back
+                const halfWidth = el.scrollWidth / 2;
+                if (el.scrollLeft >= halfWidth) {
+                    el.scrollLeft -= halfWidth;
+                }
+            }
+            animationFrameId = requestAnimationFrame(autoScroll);
+        };
+
+        // Mouse Drag to Scroll
+        const handleMouseDown = (e) => {
+            isMouseDown = true;
+            startX = e.pageX - el.offsetLeft;
+            scrollLeft = el.scrollLeft;
+        };
+
+        const handleMouseLeave = () => {
+            isMouseDown = false;
+            isHovered = false;
+        };
+
+        const handleMouseUp = () => {
+            isMouseDown = false;
+        };
+
+        const handleMouseMove = (e) => {
+            if (!isMouseDown) return;
+            e.preventDefault();
+            const x = e.pageX - el.offsetLeft;
+            const walk = (x - startX) * 1.5; // sensitivitas drag
+            el.scrollLeft = scrollLeft - walk;
+        };
+
+        // Hover events
+        const handleMouseEnter = () => {
+            isHovered = true;
+        };
+
+        // Touch events for mobile
+        const handleTouchStart = () => {
+            isMouseDown = true;
+        };
+
+        const handleTouchEnd = () => {
+            isMouseDown = false;
+        };
+
+        el.addEventListener('mousedown', handleMouseDown);
+        el.addEventListener('mouseleave', handleMouseLeave);
+        el.addEventListener('mouseup', handleMouseUp);
+        el.addEventListener('mousemove', handleMouseMove);
+        el.addEventListener('mouseenter', handleMouseEnter);
+        el.addEventListener('touchstart', handleTouchStart, { passive: true });
+        el.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+        animationFrameId = requestAnimationFrame(autoScroll);
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+            el.removeEventListener('mousedown', handleMouseDown);
+            el.removeEventListener('mouseleave', handleMouseLeave);
+            el.removeEventListener('mouseup', handleMouseUp);
+            el.removeEventListener('mousemove', handleMouseMove);
+            el.removeEventListener('mouseenter', handleMouseEnter);
+            el.removeEventListener('touchstart', handleTouchStart);
+            el.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, []);
+
     return (
-        <section className="py-20 md:py-28 lg:py-32" id="about">
+        <section className="py-12 md:py-16 lg:py-20" id="about">
             <div className="section-container">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-                    {/* About Text */}
+                     {/* About Text */}
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
                         {/* Section label */}
                         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
@@ -46,26 +133,39 @@ const AboutExperience = () => {
                         </motion.div>
 
                         {/* Core Technologies */}
-                        <motion.div variants={fadeIn} className="mt-10">
+                        <motion.div variants={fadeIn} className="mt-10 overflow-hidden">
                             <h3 className="font-heading text-lg mb-5 font-semibold text-surface-900 dark:text-white flex items-center gap-2">
                                 Core Technologies
                                 <span className="w-2 h-2 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa]" />
                             </h3>
-                            <div className="flex flex-wrap gap-2.5">
-                                {coreTechnologies.map((tech, index) => (
-                                    <motion.span
-                                        key={tech.name}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.04, duration: 0.3 }}
-                                        whileHover={{ y: -3, scale: 1.05 }}
-                                        className={`group flex items-center gap-2 text-sm px-3.5 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-200 font-medium border border-surface-200 dark:border-surface-700 cursor-default transition-all duration-300 hover:shadow-md hover:border-[#1e3a8a] dark:hover:border-[#60a5fa]`}
-                                    >
-                                        <tech.icon className="text-base text-surface-900 dark:text-white group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300 transform group-hover:scale-110" />
-                                        {tech.name}
-                                    </motion.span>
-                                ))}
+                            <div className="marquee-container py-2">
+                                <div 
+                                    ref={scrollRef}
+                                    className="flex gap-3 overflow-x-auto scrollbar-hide py-2 cursor-grab active:cursor-grabbing select-none"
+                                >
+                                    {/* First loop */}
+                                    {coreTechnologies.map((tech, index) => (
+                                        <div
+                                            key={`${tech.name}-1`}
+                                            className="group flex items-center gap-2 text-sm px-3.5 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-200 font-medium border border-surface-200 dark:border-surface-700 cursor-default transition-all duration-300 hover:shadow-md hover:border-[#1e3a8a] dark:hover:border-[#60a5fa] shrink-0"
+                                        >
+                                            <span className="text-[10px] text-surface-400 dark:text-surface-500 font-mono font-semibold bg-surface-200/50 dark:bg-surface-700/30 px-1.5 py-0.5 rounded-md">{String(index + 1).padStart(2, '0')}</span>
+                                            <tech.icon className="text-base text-surface-900 dark:text-white group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300 transform group-hover:scale-110 pointer-events-none" />
+                                            {tech.name}
+                                        </div>
+                                    ))}
+                                    {/* Second loop for seamless effect */}
+                                    {coreTechnologies.map((tech, index) => (
+                                        <div
+                                            key={`${tech.name}-2`}
+                                            className="group flex items-center gap-2 text-sm px-3.5 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-700 dark:text-surface-200 font-medium border border-surface-200 dark:border-surface-700 cursor-default transition-all duration-300 hover:shadow-md hover:border-[#1e3a8a] dark:hover:border-[#60a5fa] shrink-0"
+                                        >
+                                            <span className="text-[10px] text-surface-400 dark:text-surface-500 font-mono font-semibold bg-surface-200/50 dark:bg-surface-700/30 px-1.5 py-0.5 rounded-md">{String(index + 1).padStart(2, '0')}</span>
+                                            <tech.icon className="text-base text-surface-900 dark:text-white group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300 transform group-hover:scale-110 pointer-events-none" />
+                                            {tech.name}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>
