@@ -139,13 +139,19 @@ const Contact = () => {
                                     </div>
                                     {/* reCAPTCHA widget */}
                                     <div className="flex flex-col items-start gap-2">
-                                        <ReCAPTCHA
-                                            ref={recaptchaRef}
-                                            sitekey={RECAPTCHA_SITE_KEY}
-                                            onChange={handleCaptchaChange}
-                                            onExpired={handleCaptchaExpired}
-                                            theme="light"
-                                        />
+                                        {RECAPTCHA_SITE_KEY ? (
+                                            <ReCAPTCHA
+                                                ref={recaptchaRef}
+                                                sitekey={RECAPTCHA_SITE_KEY}
+                                                onChange={handleCaptchaChange}
+                                                onExpired={handleCaptchaExpired}
+                                                theme="light"
+                                            />
+                                        ) : (
+                                            <p className="text-amber-500 dark:text-amber-400 text-xs font-medium">
+                                                ⚠️ reCAPTCHA is not configured.
+                                            </p>
+                                        )}
                                         {captchaError && (
                                             <p className="text-red-500 dark:text-red-400 text-xs font-medium animate-pulse">
                                                 ⚠️ Mohon selesaikan CAPTCHA terlebih dahulu.
