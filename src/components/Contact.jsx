@@ -51,18 +51,18 @@ const Contact = () => {
             templateParams,
             EMAILJS_PUBLIC_KEY
         )
-        .then((response) => {
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-            setCaptchaToken(null);
-            if (recaptchaRef.current) recaptchaRef.current.reset();
-        })
-        .catch((err) => {
-            setSubmitStatus('error');
-        })
-        .finally(() => {
-            setIsSubmitting(false);
-        });
+            .then((response) => {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setCaptchaToken(null);
+                if (recaptchaRef.current) recaptchaRef.current.reset();
+            })
+            .catch((err) => {
+                setSubmitStatus('error');
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
     };
 
     const handleCaptchaChange = (token) => {
@@ -149,21 +149,20 @@ const Contact = () => {
                                             />
                                         ) : (
                                             <p className="text-amber-500 dark:text-amber-400 text-xs font-medium">
-                                                ⚠️ reCAPTCHA is not configured.
+                                                reCAPTCHA is not configured.
                                             </p>
                                         )}
                                         {captchaError && (
                                             <p className="text-red-500 dark:text-red-400 text-xs font-medium animate-pulse">
-                                                ⚠️ Mohon selesaikan CAPTCHA terlebih dahulu.
+                                                Mohon selesaikan CAPTCHA terlebih dahulu.
                                             </p>
                                         )}
                                     </div>
-                                    <button 
-                                        type="submit" 
+                                    <button
+                                        type="submit"
                                         disabled={isSubmitting || !captchaToken}
-                                        className={`mt-1 btn-primary w-full justify-center shimmer-btn !rounded-xl transition-all flex items-center gap-2 ${
-                                            (isSubmitting || !captchaToken) ? 'opacity-60 cursor-not-allowed' : ''
-                                        }`}
+                                        className={`mt-1 btn-primary w-full justify-center shimmer-btn !rounded-xl transition-all flex items-center gap-2 ${(isSubmitting || !captchaToken) ? 'opacity-60 cursor-not-allowed' : ''
+                                            }`}
                                     >
                                         {isSubmitting ? (
                                             <>
@@ -182,12 +181,12 @@ const Contact = () => {
 
                                     {submitStatus === 'success' && (
                                         <p className="text-green-500 dark:text-green-400 text-sm font-medium mt-2 bg-green-500/10 border border-green-500/20 px-4 py-2.5 rounded-xl animate-fade-in text-center">
-                                            🎉 Pesan Anda berhasil dikirim! Saya akan segera menghubungi Anda.
+                                            Pesan Anda berhasil dikirim! Saya akan segera menghubungi Anda.
                                         </p>
                                     )}
                                     {submitStatus === 'error' && (
                                         <p className="text-red-500 dark:text-red-400 text-sm font-medium mt-2 bg-red-500/10 border border-red-500/20 px-4 py-2.5 rounded-xl animate-fade-in text-center">
-                                            ❌ Gagal mengirim pesan. Silakan coba lagi nanti.
+                                            Gagal mengirim pesan. Silakan coba lagi nanti.
                                         </p>
                                     )}
                                 </form>
