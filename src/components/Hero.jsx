@@ -41,7 +41,7 @@ const Hero = () => {
                         {/* Typewriter line */}
                         <motion.div variants={fadeIn} className="text-[clamp(1.25rem,3vw,2rem)] font-heading font-semibold text-surface-400 dark:text-surface-500 mb-6 min-h-[1.5em]">
                             <Typewriter
-                                words={['Software Engineer', 'Frontend Developer', 'UI/UX Enthusiast', 'Cybersecurity Enthusiast', 'Fotografer', 'Videografer', 'Design Grafis']}
+                                words={['Backend Developer', 'Frontend Developer', 'Cybersecurity Enthusiast', 'Fotografer', 'Videografer', 'Design Grafis']}
                                 loop={0}
                                 cursor
                                 cursorStyle='|'
