@@ -212,3 +212,29 @@
   mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
 }
+
+/* ===== Tech Marquee Scroll ===== */
+@keyframes tech-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes tech-marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.tech-marquee-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: tech-marquee 25s linear infinite;
+}
+
+.tech-marquee-track.reverse {
+  animation: tech-marquee-reverse 25s linear infinite;
+}
+
+.tech-marquee-track:hover {
+  animation-play-state: paused;
+}

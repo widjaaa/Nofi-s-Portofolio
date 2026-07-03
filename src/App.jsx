@@ -5,7 +5,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
-import AboutExperience from './components/AboutExperience';
+import About from './components/About';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Activities from './components/Activities';
 import Certificates from './components/Certificates';
@@ -28,7 +29,8 @@ const App = () => {
             <main>
                 <Hero />
                 <Stats />
-                <AboutExperience />
+                <About />
+                <Experience />
                 <Projects />
                 <Activities />
                 <Certificates />

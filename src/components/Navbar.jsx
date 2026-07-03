@@ -87,8 +87,20 @@ const Navbar = () => {
                 : 'py-5 bg-transparent'
         }`}>
             <div className="section-container flex justify-between items-center">
-                {/* Brand Removed per user request */}
-                <div className="flex-1" />
+                <a
+                    href="#home"
+                    onClick={() => handleNavClick('home')}
+                    className="flex items-center gap-2.5 group cursor-pointer"
+                >
+                    <img 
+                        src="/images/logo/logoterbaruu.png" 
+                        alt="Nofi Logo" 
+                        className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <span className="font-heading font-bold text-lg text-surface-600 dark:text-white tracking-tight group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300">
+                        Nofi Ardiman Widjaya
+                    </span>
+                </a>
 
                 <div className="flex items-center gap-2 md:gap-8">
                     {/* Desktop nav links */}

@@ -12,13 +12,13 @@ const Hero = () => {
             <div className="absolute bottom-20 right-[15%] w-60 h-60 bg-highlight-400/10 dark:bg-highlight-400/5 rounded-full blur-[80px] animate-pulse-soft pointer-events-none" style={{ animationDelay: '1.5s' }} />
 
             <div className="section-container">
-                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-8 items-center max-w-[1100px] mx-auto">
                     {/* Left — Text */}
-                    <motion.div 
-                        initial="hidden" 
-                        animate="visible" 
-                        variants={staggerContainer} 
-                        className="max-w-[620px]"
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={staggerContainer}
+                        className=""
                     >
                         {/* Status badge */}
                         <motion.div variants={fadeIn} className="mb-6">
@@ -80,7 +80,7 @@ const Hero = () => {
                         <div className="relative">
                             {/* Glow ring behind photo */}
                             <div className="absolute -inset-4 bg-gradient-to-br from-accent-400/20 via-transparent to-highlight-400/20 rounded-[2rem] blur-2xl animate-pulse-soft" />
-                            
+
                             {/* Photo container */}
                             <div className="relative rounded-[2rem] overflow-hidden shadow-card-hover dark:shadow-card-dark-hover w-[280px] h-[350px] sm:w-[320px] sm:h-[400px] lg:w-[360px] lg:h-[450px] border-2 border-white/50 dark:border-surface-700/50">
                                 <img
@@ -100,7 +100,7 @@ const Hero = () => {
                 </div>
 
                 {/* Scroll indicator */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5 }}
