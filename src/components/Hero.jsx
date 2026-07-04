@@ -7,11 +7,46 @@ import { fadeIn, slideInLeft, slideInRight, staggerContainer, scaleUp } from '..
 const Hero = () => {
     return (
         <section className="relative min-h-screen flex items-center pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden" id="home">
-            {/* Hero-specific decorative elements */}
-            <div className="absolute top-20 left-[10%] w-72 h-72 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-[100px] animate-pulse-soft pointer-events-none" />
-            <div className="absolute bottom-20 right-[15%] w-60 h-60 bg-highlight-400/10 dark:bg-highlight-400/5 rounded-full blur-[80px] animate-pulse-soft pointer-events-none" style={{ animationDelay: '1.5s' }} />
+            {/* Tech Grid Background (Minimalist & Professional) */}
+            <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+                {/* Grid for Light Mode */}
+                <div 
+                    className="absolute inset-0 dark:hidden opacity-90 animate-grid-scroll"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(to right, rgba(30, 58, 138, 0.12) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(30, 58, 138, 0.12) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '50px 50px',
+                        maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
+                    }}
+                />
+                
+                {/* Grid for Dark Mode */}
+                <div 
+                    className="absolute inset-0 hidden dark:block opacity-70 animate-grid-scroll"
+                    style={{
+                        backgroundImage: `
+                            linear-gradient(to right, rgba(96, 165, 250, 0.1) 1px, transparent 1px),
+                            linear-gradient(to bottom, rgba(96, 165, 250, 0.1) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '50px 50px',
+                        maskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)'
+                    }}
+                />
 
-            <div className="section-container">
+                {/* Ambient Glows to blend with Navy/Light Blue theme */}
+                <div className="absolute top-0 right-0 w-[45%] h-[45%] bg-[#1e3a8a]/8 dark:bg-[#60a5fa]/5 rounded-full blur-[130px] animate-float-slow" />
+                <div className="absolute bottom-10 left-10 w-[40%] h-[40%] bg-[#1e3a8a]/5 dark:bg-[#60a5fa]/3 rounded-full blur-[120px] animate-float" />
+            </div>
+
+            {/* Hero-specific decorative elements */}
+            <div className="absolute top-20 left-[10%] w-72 h-72 bg-accent-400/10 dark:bg-accent-400/5 rounded-full blur-[100px] animate-pulse-soft pointer-events-none z-0" />
+            <div className="absolute bottom-20 right-[15%] w-60 h-60 bg-highlight-400/10 dark:bg-highlight-400/5 rounded-full blur-[80px] animate-pulse-soft pointer-events-none z-0" style={{ animationDelay: '1.5s' }} />
+
+            <div className="section-container relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-8 items-center max-w-[1100px] mx-auto">
                     {/* Left — Text */}
                     <motion.div
@@ -82,7 +117,7 @@ const Hero = () => {
                             <div className="absolute -inset-4 bg-gradient-to-br from-accent-400/20 via-transparent to-highlight-400/20 rounded-[2rem] blur-2xl animate-pulse-soft" />
 
                             {/* Photo container */}
-                            <div className="relative rounded-[2rem] overflow-hidden shadow-card-hover dark:shadow-card-dark-hover w-[280px] h-[350px] sm:w-[320px] sm:h-[400px] lg:w-[360px] lg:h-[450px] border-2 border-white/50 dark:border-surface-700/50">
+                            <div className="relative rounded-[2rem] overflow-hidden shadow-card-hover dark:shadow-card-dark-hover w-[280px] h-[350px] sm:w-[320px] sm:h-[400px] lg:w-[360px] lg:h-[450px] border-2 border-white/50 dark:border-surface-700/50 bg-surface-100 dark:bg-surface-800">
                                 <img
                                     src="/images/nofi.png"
                                     alt="Nofi Ardiman Widjaya"

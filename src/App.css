@@ -198,3 +198,17 @@
   font-size: 0.875rem;
   border-radius: 0.5rem;
 }
+
+/* ===== Tech Grid Scroll Animation ===== */
+@keyframes tech-grid-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.animate-grid-scroll {
+  animation: tech-grid-scroll 40s linear infinite;
+}
