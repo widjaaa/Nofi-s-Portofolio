@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeIn, slideInLeft, staggerContainer } from '../utils/motion';
-import { SiJavascript, SiTypescript, SiPhp, SiReact, SiLaravel, SiNodedotjs, SiTailwindcss, SiAdobepremierepro, SiCanva, SiAdobelightroom, SiGit, SiKalilinux, SiHtml5, SiCss3, SiWireshark, SiBurpsuite } from 'react-icons/si';
-import { Radar, Code2, Globe, Shield, Palette, Wrench, HardDrive, Search } from 'lucide-react';
+import { SiJavascript, SiTypescript, SiPhp, SiReact, SiLaravel, SiNodedotjs, SiTailwindcss, SiAdobepremierepro, SiCanva, SiAdobelightroom, SiGit, SiKalilinux, SiHtml5, SiCss3, SiWireshark, SiBurpsuite, SiCplusplus, SiPython, SiRstudioide, SiAdobephotoshop, SiMysql, SiPostgresql, SiDocker, SiPostman, SiGithub } from 'react-icons/si';
+import { TbBrandVscode } from 'react-icons/tb';
+import { Radar, Code2, Globe, Shield, Palette, Wrench, HardDrive, Search, Database, Terminal } from 'lucide-react';
 
 // Custom icon for NetworkMiner
 const NetworkMinerIcon = (props) => (
@@ -10,6 +11,7 @@ const NetworkMinerIcon = (props) => (
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 );
+
 
 const techCategories = [
     {
@@ -29,15 +31,19 @@ const techCategories = [
             { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
             { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
             { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+            { name: 'C++', icon: SiCplusplus, color: '#00599C' },
+            { name: 'Python', icon: SiPython, color: '#3776AB' },
+            { name: 'R Studio', icon: SiRstudioide, color: '#75AADB' },
         ]
     },
     {
-        category: 'Backend',
-        icon: Wrench,
+        category: 'Backend & Database',
+        icon: Database,
         items: [
             { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
             { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-            { name: 'Git', icon: SiGit, color: '#F05032' },
+            { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+            { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
         ]
     },
     {
@@ -58,8 +64,20 @@ const techCategories = [
         icon: Palette,
         items: [
             { name: 'Premiere Pro', icon: SiAdobepremierepro, color: '#9999FF' },
-            { name: 'Lightroom', icon: SiAdobelightroom, color: '#31A8FF' },
+            { name: 'Photoshop', icon: SiAdobephotoshop, color: '#31A8FF' },
+            { name: 'Lightroom', icon: SiAdobelightroom, color: '#7BB4FF' },
             { name: 'Canva', icon: SiCanva, color: '#00C4CC' },
+        ]
+    },
+    {
+        category: 'Tools',
+        icon: Terminal,
+        items: [
+            { name: 'Git', icon: SiGit, color: '#F05032' },
+            { name: 'GitHub', icon: SiGithub, color: '#181717' },
+            { name: 'VS Code', icon: TbBrandVscode, color: '#007ACC' },
+            { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+            { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
         ]
     },
 ];
@@ -95,7 +113,7 @@ const About = () => {
                             <span className="w-2 h-2 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa]" />
                         </h3>
 
-                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
                             {techCategories.map((cat) => (
                                 <div key={cat.category}>
                                     {/* Category Title */}

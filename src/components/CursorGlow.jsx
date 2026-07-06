@@ -44,6 +44,8 @@ const CursorGlow = () => {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let animationFrameId;
+        let lastFrameTime = 0;
+        const FRAME_INTERVAL = 33; // ~30fps (1000/30 ≈ 33ms)
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -52,7 +54,14 @@ const CursorGlow = () => {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        const animate = () => {
+        const animate = (timestamp) => {
+            animationFrameId = requestAnimationFrame(animate);
+
+            // Skip if tab is hidden or throttle to ~30fps
+            if (document.hidden) return;
+            if (timestamp - lastFrameTime < FRAME_INTERVAL) return;
+            lastFrameTime = timestamp;
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const isCurrentDark = document.documentElement.classList.contains('dark');
@@ -145,11 +154,9 @@ const CursorGlow = () => {
             if (!mouseRef.current.active && pointsRef.current.length > 0) {
                 pointsRef.current.shift();
             }
-
-            animationFrameId = requestAnimationFrame(animate);
         };
 
-        animate();
+        animationFrameId = requestAnimationFrame(animate);
 
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);

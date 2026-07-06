@@ -93,7 +93,7 @@ const Navbar = () => {
                     className="flex items-center gap-2.5 group cursor-pointer"
                 >
                     <img 
-                        src="/images/logo/logoterbaruu.png" 
+                        src="/images/logo/logoterbaruu.webp" 
                         alt="Nofi Logo" 
                         className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                     />

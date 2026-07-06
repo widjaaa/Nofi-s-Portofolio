@@ -1,28 +1,32 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
 
-// Import Components
+// Above-the-fold — loaded immediately
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import About from './components/About';
-import Experience from './components/Experience';
-import Projects from './components/Projects';
-import Activities from './components/Activities';
-import Certificates from './components/Certificates';
-import Contact from './components/Contact';
 
-// Import Interactive Enhancements
+// Below-the-fold — lazy loaded for performance
+const Experience = lazy(() => import('./components/Experience'));
+const Projects = lazy(() => import('./components/Projects'));
+const Activities = lazy(() => import('./components/Activities'));
+const Certificates = lazy(() => import('./components/Certificates'));
+const Contact = lazy(() => import('./components/Contact'));
+
+// Interactive Enhancements
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
-import CursorGlow from './components/CursorGlow';
+const CursorGlow = lazy(() => import('./components/CursorGlow'));
 
 const App = () => {
     return (
         <div className="relative noise-overlay">
             {/* Global interactive effects */}
             <ScrollProgress />
-            <CursorGlow />
+            <Suspense fallback={null}>
+                <CursorGlow />
+            </Suspense>
             <BackToTop />
 
             <Navbar />
@@ -30,11 +34,13 @@ const App = () => {
                 <Hero />
                 <Stats />
                 <About />
-                <Experience />
-                <Projects />
-                <Activities />
-                <Certificates />
-                <Contact />
+                <Suspense fallback={<div className="min-h-screen" />}>
+                    <Experience />
+                    <Projects />
+                    <Activities />
+                    <Certificates />
+                    <Contact />
+                </Suspense>
             </main>
 
             {/* Footer */}

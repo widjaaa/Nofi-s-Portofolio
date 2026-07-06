@@ -7,7 +7,7 @@ export const projectsData = [
         githubUrl: 'https://github.com/widjaaa/Nofi-s-Portofolio',
         liveSiteUrl: 'https://nofi-s-portofolio.vercel.app/',
         gradient: 'linear-gradient(135deg, #667cea 0%, #764ba2 100%)',
-        image: '/images/projects/newImageWeb.png',
+        image: '/images/projects/newImageWeb.webp',
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const projectsData = [
         githubUrl: 'https://github.com/widjaaa/sleepyDetector.git',
         liveSiteUrl: 'https://sleepy-detector.vercel.app/',
         gradient: 'linear-gradient(135deg, #f857a6 0%, #ff5858 100%)',
-        image: '/images/projects/sleepyDetector.png',
+        image: '/images/projects/sleepyDetector.webp',
     }
 ];
 

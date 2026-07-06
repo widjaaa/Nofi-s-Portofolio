@@ -12,7 +12,7 @@ const experiences = [
             'Completed a visual design project for a plastic processing machine marketing brochure within a tight deadline.',
             'Collaborate with the marketing team to ensure brand identity consistency in every design asset produced.',
         ],
-        image: '/images/activities/graphic.png',
+        image: '/images/activities/graphic.webp',
     },
     {
         date: 'Oct 2024 – Oct 2025',
@@ -23,7 +23,7 @@ const experiences = [
             'Weekly website maintenance, checking for security vulnerabilities and bugs.',
             'Successfully integrated from native PHP to the Laravel framework.',
         ],
-        image: '/images/activities/webdev.png',
+        image: '/images/activities/webdev.webp',
     },
 ];
 

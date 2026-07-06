@@ -6,7 +6,7 @@ export const activitiesData = [
         description: 'Training Junior Web Developer at Komdigi.',
         bgGrad: 'linear-gradient(45deg, #FF9A9E, #FECFEF)',
         span: 'col-span-1 md:col-span-2 row-span-2',
-        image: '/images/activities/Training Junior Web Developer at Komdigi.jpeg'
+        image: '/images/activities/Training Junior Web Developer at Komdigi.webp'
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const activitiesData = [
         description: 'With Sir Handa Abidin as Rector President University at Economic Survival Expo.',
         bgGrad: 'linear-gradient(135deg, #667EEA, #764BA2)',
         span: 'col-span-1 row-span-1',
-        image: '/images/activities/with sir handa abidin as rector president university at economic survival expo.jpeg'
+        image: '/images/activities/with sir handa abidin as rector president university at economic survival expo.webp'
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ export const activitiesData = [
         description: 'Served as PIC Guard for the Vocal Victory event.',
         bgGrad: 'linear-gradient(to right, #4FACFE, #00F2FE)',
         span: 'col-span-1 row-span-2',
-        image: '/images/activities/Committee Vocal Victory as PIC Guard.jpeg'
+        image: '/images/activities/Committee Vocal Victory as PIC Guard.webp'
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ export const activitiesData = [
         description: 'Served as Liaison Officer for the Grand Inauguration committee.',
         bgGrad: 'linear-gradient(to top, #0BA360, #3CBA92)',
         span: 'col-span-1 row-span-1',
-        image: '/images/activities/committee grand inauguration as Liaison Officer.jpeg'
+        image: '/images/activities/committee grand inauguration as Liaison Officer.webp'
     },
     {
         id: 5,
@@ -42,7 +42,7 @@ export const activitiesData = [
         description: 'Managed logistics for the Innoverse event committee.',
         bgGrad: 'linear-gradient(120deg, #F6D365, #FDA085)',
         span: 'col-span-1 md:col-span-2 row-span-1',
-        image: '/images/activities/committee innoverse as logistic.jpeg'
+        image: '/images/activities/committee innoverse as logistic.webp'
     },
     {
         id: 6,
@@ -51,7 +51,7 @@ export const activitiesData = [
         description: 'Participating in the Economic Survival project exhibition.',
         bgGrad: 'linear-gradient(45deg, #FF9A9E, #FECFEF)',
         span: 'col-span-1 md:col-span-2 row-span-2',
-        image: '/images/activities/project economic survival.jpeg'
+        image: '/images/activities/project economic survival.webp'
     },
     {
         id: 7,
@@ -60,7 +60,7 @@ export const activitiesData = [
         description: 'Engaged in multimedia production for the Golden Generation project.',
         bgGrad: 'linear-gradient(to top, #0BA360, #3CBA92)',
         span: 'col-span-1 row-span-1',
-        image: '/images/activities/golden generation multimedia.jpeg'
+        image: '/images/activities/golden generation multimedia.webp'
     },
     {
         id: 8,
@@ -69,6 +69,6 @@ export const activitiesData = [
         description: 'Capturing moments and events as a photographer.',
         bgGrad: 'linear-gradient(135deg, #667EEA, #764BA2)',
         span: 'col-span-1 row-span-2',
-        image: '/images/activities/fotografer.jpeg'
+        image: '/images/activities/fotografer.webp'
     }
 ];

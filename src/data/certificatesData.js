@@ -6,7 +6,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#F7DF1E]', // Kuning JS
-        image: '/images/certificates/Belajar Back-End Pemula dengan JavaScript_page-0001.jpg'
+        image: '/images/certificates/Belajar Back-End Pemula dengan JavaScript_page-0001.webp'
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#4285F4]', // Biru AI/Cloud
-        image: '/images/certificates/Belajar Dasar AI_page-0001.jpg'
+        image: '/images/certificates/Belajar Dasar AI_page-0001.webp'
     },
     {
         id: 3,
@@ -24,7 +24,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#FF9900]', // Oranye AWS
-        image: '/images/certificates/Belajar Dasar Cloud dan Gen AI di AWS_page-0001.jpg'
+        image: '/images/certificates/Belajar Dasar Cloud dan Gen AI di AWS_page-0001.webp'
     },
     {
         id: 4,
@@ -33,7 +33,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#000000] dark:text-white', // Hitam/Putih GitHub
-        image: '/images/certificates/Belajar Dasar Git dengan GitHub_page-0001.jpg'
+        image: '/images/certificates/Belajar Dasar Git dengan GitHub_page-0001.webp'
     },
     {
         id: 5,
@@ -42,7 +42,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#61DAFB]', // Biru Muda React
-        image: '/images/certificates/Belajar Fundamental Aplikasi Web dengan React_page-0001.jpg'
+        image: '/images/certificates/Belajar Fundamental Aplikasi Web dengan React_page-0001.webp'
     },
     {
         id: 6,
@@ -51,7 +51,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#F7DF1E]', // Kuning JS
-        image: '/images/certificates/Belajar Fundamental Back-End dengan JavaScript_page-0001.jpg'
+        image: '/images/certificates/Belajar Fundamental Back-End dengan JavaScript_page-0001.webp'
     },
     {
         id: 7,
@@ -60,7 +60,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#E34F26]', // Oranye HTML
-        image: '/images/certificates/Belajar Membuat Front-End Web untuk Pemula_page-0001.jpg'
+        image: '/images/certificates/Belajar Membuat Front-End Web untuk Pemula_page-0001.webp'
     },
     {
         id: 8,
@@ -69,7 +69,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#264DE4]', // Biru CSS
-        image: '/images/certificates/Belajar dasar pemrograman web_page-0001.jpg'
+        image: '/images/certificates/Belajar dasar pemrograman web_page-0001.webp'
     },
     {
         id: 9,
@@ -78,7 +78,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#4CAF50]', // Hijau Logic
-        image: '/images/certificates/Pengenalan ke Logika Pemrograman_page-0001.jpg'
+        image: '/images/certificates/Pengenalan ke Logika Pemrograman_page-0001.webp'
     },
     {
         id: 10,
@@ -87,7 +87,7 @@ export const certificatesData = [
         date: 'Recent',
         validationUrl: '#',
         iconColor: 'text-[#0BA360]',
-        image: '/images/certificates/sertifikat_course_403_4417028_270925215928_page-0001.jpg'
+        image: '/images/certificates/sertifikat_course_403_4417028_270925215928_page-0001.webp'
     },
     {
         id: 11,
@@ -96,7 +96,7 @@ export const certificatesData = [
         date: 'September 6, 2025',
         validationUrl: '#',
         iconColor: 'text-[#0BA360]',
-        image: '/images/certificates/introduction-to-cybersecurity.png'
+        image: '/images/certificates/introduction-to-cybersecurity.webp'
     },
     {
         id: 12,
@@ -105,7 +105,7 @@ export const certificatesData = [
         date: 'July 23, 2025',
         validationUrl: '#',
         iconColor: 'text-[#0BA360]',
-        image: '/images/certificates/Certificate-of-Completion-Introduction-to-Information-Security_page-0001.jpg'
+        image: '/images/certificates/Certificate-of-Completion-Introduction-to-Information-Security_page-0001.webp'
     },
     {
         id: 13,
@@ -114,7 +114,7 @@ export const certificatesData = [
         date: 'June 22, 2025',
         validationUrl: '#',
         iconColor: 'text-[#0BA360]',
-        image: '/images/certificates/intro to python.jpg'
+        image: '/images/certificates/intro to python.webp'
     },
     {
         id: 14,
@@ -123,6 +123,6 @@ export const certificatesData = [
         date: 'July 12, 2025',
         validationUrl: '#',
         iconColor: 'text-[#0BA360]',
-        image: '/images/certificates/cybersecurity beginer.jpg'
+        image: '/images/certificates/cybersecurity beginer.webp'
     },
 ];

@@ -1,9 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTiktok, FaYoutube, FaWhatsapp, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { fadeIn, staggerContainer, slideInLeft, slideInRight } from '../utils/motion';
-import ReCAPTCHA from 'react-google-recaptcha';
-import emailjs from '@emailjs/browser';
+
+// Lazy-load heavy third-party libraries (only needed when Contact section is visible)
+const ReCAPTCHA = lazy(() => import('react-google-recaptcha'));
+
+// EmailJS loaded dynamically when form is submitted
+let emailjsModule = null;
+const getEmailJS = async () => {
+    if (!emailjsModule) {
+        emailjsModule = await import('@emailjs/browser');
+    }
+    return emailjsModule.default || emailjsModule;
+};
 
 // Environment variables (stored in .env, not committed to Git)
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
@@ -28,7 +38,7 @@ const Contact = () => {
     const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
     const recaptchaRef = useRef(null);
 
-    const handleEmailSubmit = (e) => {
+    const handleEmailSubmit = async (e) => {
         e.preventDefault();
         if (!captchaToken) {
             setCaptchaError(true);
@@ -45,24 +55,23 @@ const Contact = () => {
             'g-recaptcha-response': captchaToken
         };
 
-        emailjs.send(
-            EMAILJS_SERVICE_ID,
-            EMAILJS_TEMPLATE_ID,
-            templateParams,
-            EMAILJS_PUBLIC_KEY
-        )
-            .then((response) => {
-                setSubmitStatus('success');
-                setFormData({ name: '', email: '', message: '' });
-                setCaptchaToken(null);
-                if (recaptchaRef.current) recaptchaRef.current.reset();
-            })
-            .catch((err) => {
-                setSubmitStatus('error');
-            })
-            .finally(() => {
-                setIsSubmitting(false);
-            });
+        try {
+            const emailjs = await getEmailJS();
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams,
+                EMAILJS_PUBLIC_KEY
+            );
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setCaptchaToken(null);
+            if (recaptchaRef.current) recaptchaRef.current.reset();
+        } catch (err) {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleCaptchaChange = (token) => {
@@ -140,13 +149,15 @@ const Contact = () => {
                                     {/* reCAPTCHA widget */}
                                     <div className="flex flex-col items-start gap-2">
                                         {RECAPTCHA_SITE_KEY ? (
-                                            <ReCAPTCHA
-                                                ref={recaptchaRef}
-                                                sitekey={RECAPTCHA_SITE_KEY}
-                                                onChange={handleCaptchaChange}
-                                                onExpired={handleCaptchaExpired}
-                                                theme="light"
-                                            />
+                                            <Suspense fallback={<div className="h-[78px] w-[304px] bg-surface-100 dark:bg-surface-800 rounded-lg animate-pulse" />}>
+                                                <ReCAPTCHA
+                                                    ref={recaptchaRef}
+                                                    sitekey={RECAPTCHA_SITE_KEY}
+                                                    onChange={handleCaptchaChange}
+                                                    onExpired={handleCaptchaExpired}
+                                                    theme="light"
+                                                />
+                                            </Suspense>
                                         ) : (
                                             <p className="text-amber-500 dark:text-amber-400 text-xs font-medium">
                                                 reCAPTCHA is not configured.

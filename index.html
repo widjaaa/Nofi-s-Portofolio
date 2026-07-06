@@ -23,15 +23,21 @@
   <meta name="twitter:image" content="https://nofi-s-portofolio.vercel.app/images/nofi.png" />
   <!-- Canonical URL -->
   <link rel="canonical" href="https://nofi-s-portofolio.vercel.app/" />
+  <!-- Preload hero image (LCP element) -->
+  <link rel="preload" as="image" href="/images/nofi.webp" type="image/webp">
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Import Space Grotesk, Inter, and Lora -->
+  <!-- Async Google Fonts (non-render-blocking) — Lora removed (unused) -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+  </noscript>
 </head>
-
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>

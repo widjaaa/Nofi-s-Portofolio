@@ -119,9 +119,9 @@ const Hero = () => {
                             {/* Photo container */}
                             <div className="relative rounded-[2rem] overflow-hidden shadow-card-hover dark:shadow-card-dark-hover w-[280px] h-[350px] sm:w-[320px] sm:h-[400px] lg:w-[360px] lg:h-[450px] border-2 border-white/50 dark:border-surface-700/50 bg-surface-100 dark:bg-surface-800">
                                 <img
-                                    src="/images/nofi.png"
+                                    src="/images/nofi.webp"
                                     alt="Nofi Ardiman Widjaya"
-                                    loading="lazy"
+                                    fetchpriority="high"
                                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                                 />
                                 {/* Subtle gradient overlay at bottom */}
