@@ -21,7 +21,7 @@ const CursorGlow = lazy(() => import('./components/CursorGlow'));
 
 const App = () => {
     return (
-        <div className="relative noise-overlay">
+        <div className="relative noise-overlay overflow-x-hidden">
             {/* Global interactive effects */}
             <ScrollProgress />
             <Suspense fallback={null}>

@@ -92,14 +92,14 @@ const Hero = () => {
                         </motion.p>
 
                         {/* CTA buttons */}
-                        <motion.div variants={fadeIn} className="flex gap-3 sm:gap-4 flex-wrap">
-                            <a href="#projects" className="btn-primary shimmer-btn">
+                        <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+                            <a href="#projects" className="btn-primary shimmer-btn w-full sm:w-auto justify-center">
                                 View Projects <ArrowRight size={18} />
                             </a>
-                            <a href="/cv/cvnofi.pdf" download="Nofi_Ardiman_Widjaya_CV.pdf" className="btn-secondary">
+                            <a href="/cv/cvnofi.pdf" download="Nofi_Ardiman_Widjaya_CV.pdf" className="btn-secondary w-full sm:w-auto justify-center">
                                 Download CV <FileText size={18} />
                             </a>
-                            <a href="#contact" className="btn-outline">
+                            <a href="#contact" className="btn-outline w-full sm:w-auto justify-center">
                                 Let's Talk
                             </a>
                         </motion.div>
@@ -112,12 +112,12 @@ const Hero = () => {
                         variants={scaleUp}
                         className="flex justify-center lg:justify-end"
                     >
-                        <div className="relative">
+                        <div className="relative w-full max-w-[280px] sm:max-w-none flex justify-center">
                             {/* Glow ring behind photo */}
                             <div className="absolute -inset-4 bg-gradient-to-br from-accent-400/20 via-transparent to-highlight-400/20 rounded-[2rem] blur-2xl animate-pulse-soft" />
 
                             {/* Photo container */}
-                            <div className="relative rounded-[2rem] overflow-hidden shadow-card-hover dark:shadow-card-dark-hover w-[280px] h-[350px] sm:w-[320px] sm:h-[400px] lg:w-[360px] lg:h-[450px] border-2 border-white/50 dark:border-surface-700/50 bg-surface-100 dark:bg-surface-800">
+                            <div className="relative rounded-[2rem] overflow-hidden shadow-card-hover dark:shadow-card-dark-hover w-full max-w-[280px] aspect-[4/5] sm:w-[320px] sm:h-[400px] sm:aspect-auto lg:w-[360px] lg:h-[450px] border-2 border-white/50 dark:border-surface-700/50 bg-surface-100 dark:bg-surface-800">
                                 <img
                                     src="/images/nofi.webp"
                                     alt="Nofi Ardiman Widjaya"
@@ -129,7 +129,6 @@ const Hero = () => {
                             </div>
 
                             {/* Floating decorative badge */}
-                            {/* Badge removed as requested */}
                         </div>
                     </motion.div>
                 </div>

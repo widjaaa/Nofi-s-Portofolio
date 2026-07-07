@@ -97,8 +97,8 @@ const Navbar = () => {
                         alt="Nofi Logo" 
                         className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                     />
-                    <span className="font-heading font-bold text-lg text-surface-600 dark:text-white tracking-tight group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300">
-                        Nofi Ardiman Widjaya
+                    <span className="font-heading font-bold text-sm min-[380px]:text-base md:text-lg text-surface-600 dark:text-white tracking-tight group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300">
+                        Nofi Ardiman <span className="hidden min-[480px]:inline">Widjaya</span>
                     </span>
                 </a>
 

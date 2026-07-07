@@ -12,7 +12,9 @@ const Activities = () => {
     const scroll = (direction) => {
         if (scrollContainerRef.current) {
             const { current } = scrollContainerRef;
-            const scrollAmount = direction === 'left' ? -400 : 400;
+            const card = current.firstElementChild;
+            const step = card ? card.offsetWidth + 20 : 400; // 20 is gap-5 (1.25rem)
+            const scrollAmount = direction === 'left' ? -step : step;
             current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     };
@@ -24,8 +26,9 @@ const Activities = () => {
         
         const handleScroll = () => {
             const scrollLeft = container.scrollLeft;
-            const cardWidth = 400;
-            const index = Math.round(scrollLeft / cardWidth);
+            const card = container.firstElementChild;
+            const step = card ? card.offsetWidth + 20 : 400;
+            const index = Math.round(scrollLeft / step);
             setActiveIndex(Math.min(index, activitiesData.length - 1));
         };
 
@@ -35,8 +38,9 @@ const Activities = () => {
 
     const scrollToIndex = (index) => {
         if (scrollContainerRef.current) {
-            const cardWidth = 400;
-            scrollContainerRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+            const card = scrollContainerRef.current.firstElementChild;
+            const step = card ? card.offsetWidth + 20 : 400;
+            scrollContainerRef.current.scrollTo({ left: index * step, behavior: 'smooth' });
         }
     };
 

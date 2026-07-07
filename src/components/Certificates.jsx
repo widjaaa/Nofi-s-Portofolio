@@ -11,13 +11,19 @@ const Certificates = () => {
 
     const scroll = (dir) => {
         if (!scrollRef.current) return;
-        scrollRef.current.scrollBy({ left: dir === 'left' ? -370 : 370, behavior: 'smooth' });
+        const card = scrollRef.current.querySelector('.cert-card');
+        const step = card ? card.offsetWidth + 20 : 370; // 20 is gap-5 (1.25rem)
+        scrollRef.current.scrollBy({ left: dir === 'left' ? -step : step, behavior: 'smooth' });
     };
 
     useEffect(() => {
         const el = scrollRef.current;
         if (!el) return;
-        const onScroll = () => setActiveIdx(Math.min(Math.round(el.scrollLeft / 370), certificatesData.length - 1));
+        const onScroll = () => {
+            const card = el.querySelector('.cert-card');
+            const step = card ? card.offsetWidth + 20 : 370;
+            setActiveIdx(Math.min(Math.round(el.scrollLeft / step), certificatesData.length - 1));
+        };
         el.addEventListener('scroll', onScroll, { passive: true });
         return () => el.removeEventListener('scroll', onScroll);
     }, []);
@@ -66,7 +72,18 @@ const Certificates = () => {
 
                 <div className="flex justify-center gap-1.5 mt-6">
                     {certificatesData.map((_, i) => (
-                        <button key={i} onClick={() => { if (scrollRef.current) scrollRef.current.scrollTo({ left: i * 370, behavior: 'smooth' }); }} className={`dot-nav-item ${i === activeIdx ? 'active' : ''}`} aria-label={`Certificate ${i + 1}`} />
+                        <button 
+                            key={i} 
+                            onClick={() => { 
+                                if (scrollRef.current) {
+                                    const card = scrollRef.current.querySelector('.cert-card');
+                                    const step = card ? card.offsetWidth + 20 : 370;
+                                    scrollRef.current.scrollTo({ left: i * step, behavior: 'smooth' });
+                                }
+                            }} 
+                            className={`dot-nav-item ${i === activeIdx ? 'active' : ''}`} 
+                            aria-label={`Certificate ${i + 1}`} 
+                        />
                     ))}
                 </div>
             </div>

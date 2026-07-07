@@ -98,7 +98,7 @@ const Contact = () => {
                     </motion.div>
 
                     {/* Contact card */}
-                    <motion.div variants={fadeIn} className="glass-card p-6 sm:p-8 md:p-10 lg:p-14 shadow-card hover:shadow-card-hover dark:shadow-card-dark transition-all duration-500 rounded-3xl relative overflow-hidden">
+                    <motion.div variants={fadeIn} className="glass-card p-4 min-[360px]:p-5 sm:p-8 md:p-10 lg:p-14 shadow-card hover:shadow-card-hover dark:shadow-card-dark transition-all duration-500 rounded-3xl relative overflow-hidden">
                         {/* Background decoration */}
                         <div className="absolute top-0 right-0 w-80 h-80 bg-accent-400/10 dark:bg-accent-400/[0.05] rounded-full blur-[80px] pointer-events-none" />
                         <div className="absolute bottom-0 left-0 w-60 h-60 bg-highlight-400/10 dark:bg-highlight-400/[0.05] rounded-full blur-[60px] pointer-events-none" />
@@ -149,15 +149,19 @@ const Contact = () => {
                                     {/* reCAPTCHA widget */}
                                     <div className="flex flex-col items-start gap-2">
                                         {RECAPTCHA_SITE_KEY ? (
-                                            <Suspense fallback={<div className="h-[78px] w-[304px] bg-surface-100 dark:bg-surface-800 rounded-lg animate-pulse" />}>
-                                                <ReCAPTCHA
-                                                    ref={recaptchaRef}
-                                                    sitekey={RECAPTCHA_SITE_KEY}
-                                                    onChange={handleCaptchaChange}
-                                                    onExpired={handleCaptchaExpired}
-                                                    theme="light"
-                                                />
-                                            </Suspense>
+                                            <div className="w-full overflow-hidden flex justify-start">
+                                                <div className="origin-left scale-[0.82] min-[360px]:scale-[0.9] min-[400px]:scale-100 h-[64px] min-[360px]:h-[70px] min-[400px]:h-[78px] w-[250px] min-[360px]:w-[272px] min-[400px]:w-[304px]">
+                                                    <Suspense fallback={<div className="h-full w-full bg-surface-100 dark:bg-surface-800 rounded-lg animate-pulse" />}>
+                                                        <ReCAPTCHA
+                                                            ref={recaptchaRef}
+                                                            sitekey={RECAPTCHA_SITE_KEY}
+                                                            onChange={handleCaptchaChange}
+                                                            onExpired={handleCaptchaExpired}
+                                                            theme="light"
+                                                        />
+                                                    </Suspense>
+                                                </div>
+                                            </div>
                                         ) : (
                                             <p className="text-amber-500 dark:text-amber-400 text-xs font-medium">
                                                 reCAPTCHA is not configured.
