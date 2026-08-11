@@ -125,4 +125,22 @@ export const certificatesData = [
         iconColor: 'text-[#0BA360]',
         image: '/images/certificates/cybersecurity beginer.webp'
     },
+    {
+        id: 15,
+        title: 'Junior Web Developer',
+        issuer: 'Professional Certification',
+        date: 'Recent',
+        validationUrl: '#',
+        iconColor: 'text-[#264DE4]',
+        image: '/images/certificates/juniorWebDev.webp'
+    },
+    {
+        id: 16,
+        title: 'Web Development Certificate',
+        issuer: 'Professional Certification',
+        date: 'Recent',
+        validationUrl: '#',
+        iconColor: 'text-[#E34F26]',
+        image: '/images/certificates/sertificate webdev.webp'
+    }
 ];
