@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { mobileMenuVariants, navItemVariant, staggerFast } from '../utils/motion';
 
 const navLinks = [
@@ -17,9 +18,16 @@ const Navbar = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('');
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
 
     // Active state scroll spy
     useEffect(() => {
+        if (!isHomePage) {
+            setActiveSection('');
+            return;
+        }
+
         const handleScroll = () => {
             const isScrolled = window.scrollY > 50;
             setScrolled(isScrolled);
@@ -50,7 +58,20 @@ const Navbar = () => {
         window.addEventListener('scroll', handleScroll);
         handleScroll(); // Initial check
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isHomePage]);
+
+    // Handle hash scrolling for Link navigation
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    }, [location]);
 
     // Check system preference and localStorage on initial load — default to light
     useEffect(() => {
@@ -87,8 +108,8 @@ const Navbar = () => {
                 : 'py-5 bg-transparent'
         }`}>
             <div className="section-container flex justify-between items-center">
-                <a
-                    href="#home"
+                <Link
+                    to="/"
                     onClick={() => handleNavClick('home')}
                     className="flex items-center gap-2.5 group cursor-pointer"
                 >
@@ -97,27 +118,27 @@ const Navbar = () => {
                         alt="Nofi Logo" 
                         className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                     />
-                    <span className="font-heading font-bold text-sm min-[380px]:text-base md:text-lg text-surface-600 dark:text-white tracking-tight group-hover:text-[#1e3a8a] dark:group-hover:text-[#60a5fa] transition-colors duration-300">
+                    <span className="font-heading font-bold text-sm min-[380px]:text-base md:text-lg text-surface-900 dark:text-white tracking-tight group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors duration-300">
                         Nofi Ardiman <span className="hidden min-[480px]:inline">Widjaya</span>
                     </span>
-                </a>
+                </Link>
 
                 <div className="flex items-center gap-2 md:gap-8">
                     {/* Desktop nav links */}
                     <ul className="hidden md:flex gap-1 list-none bg-surface-100/60 dark:bg-surface-800/40 backdrop-blur-sm rounded-xl p-1">
                         {navLinks.map((link) => (
                             <li key={link.id}>
-                                <a
-                                    href={`#${link.id}`}
+                                <Link
+                                    to={`/#${link.id}`}
                                     onClick={() => handleNavClick(link.id)}
                                     className={`relative px-3.5 py-2 rounded-lg text-[0.85rem] font-medium transition-all duration-300 block ${
                                         activeSection === link.id
-                                            ? 'text-[#1e3a8a] dark:text-[#60a5fa] font-bold bg-white dark:bg-surface-700/80 shadow-sm'
-                                            : 'text-surface-500 dark:text-surface-400 hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:bg-white/50 dark:hover:bg-surface-700/40'
+                                            ? 'text-accent-600 dark:text-accent-400 font-bold bg-white dark:bg-surface-700/80 shadow-sm'
+                                            : 'text-surface-500 dark:text-surface-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-white/50 dark:hover:bg-surface-700/40'
                                     }`}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -194,17 +215,17 @@ const Navbar = () => {
                         >
                             {navLinks.map((link) => (
                                 <motion.li key={link.id} variants={navItemVariant} className="w-full">
-                                    <a
-                                        href={`#${link.id}`}
+                                    <Link
+                                        to={`/#${link.id}`}
                                         onClick={() => handleNavClick(link.id)}
                                         className={`block text-center py-3 px-6 rounded-xl text-base font-heading font-medium transition-all duration-300 ${
                                             activeSection === link.id
-                                                ? 'text-[#1e3a8a] dark:text-[#60a5fa] font-bold bg-[#1e3a8a]/5 dark:bg-[#60a5fa]/10'
-                                                : 'text-surface-600 dark:text-surface-400 hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] hover:bg-surface-50 dark:hover:bg-surface-800'
+                                                ? 'text-accent-600 dark:text-accent-400 font-bold bg-accent-500/10 dark:bg-accent-400/10'
+                                                : 'text-surface-600 dark:text-surface-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-surface-50 dark:hover:bg-surface-800'
                                         }`}
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </motion.li>
                             ))}
                         </motion.ul>
@@ -216,3 +237,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

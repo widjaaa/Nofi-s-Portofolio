@@ -94,7 +94,7 @@ const Contact = () => {
                     {/* Section header */}
                     <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
                         <div className="accent-line" />
-                        <span className="text-[#1e3a8a] dark:text-[#60a5fa] font-heading font-semibold text-sm uppercase tracking-wider">Contact</span>
+                        <span className="text-accent-600 dark:text-accent-400 font-heading font-semibold text-sm uppercase tracking-wider">Contact</span>
                     </motion.div>
 
                     {/* Contact card */}
@@ -176,7 +176,7 @@ const Contact = () => {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting || !captchaToken}
-                                        className={`mt-1 btn-primary w-full justify-center shimmer-btn !rounded-xl transition-all flex items-center gap-2 ${(isSubmitting || !captchaToken) ? 'opacity-60 cursor-not-allowed' : ''
+                                        className={`mt-1 btn-primary w-full justify-center !rounded-xl transition-all flex items-center gap-2 ${(isSubmitting || !captchaToken) ? 'opacity-60 cursor-not-allowed' : ''
                                             }`}
                                     >
                                         {isSubmitting ? (

@@ -1,42 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ArrowRight, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { fadeIn, staggerContainer, scaleUp } from '../utils/motion';
 import { projectsData } from '../data/projectsData';
 
-const Projects = () => {
+const ProjectsPage = () => {
+    // Scroll to top when loading the page
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
-        <section className="py-20 md:py-28 lg:py-36 relative overflow-hidden" id="projects">
+        <section className="py-24 md:py-32 relative overflow-hidden min-h-screen">
             {/* Background subtle accent */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-surface-100/60 to-transparent dark:via-surface-900/40 -z-10" />
 
             <div className="section-container">
                 {/* Section header */}
                 <div className="mb-16 md:mb-20">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                    <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
                         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-4">
                             <div className="accent-line" />
                             <span className="text-accent-600 dark:text-accent-400 font-heading font-bold text-xs uppercase tracking-widest">Portfolio</span>
                         </motion.div>
-                        <motion.h2 variants={fadeIn} className="section-heading mb-4">
-                            Selected Works
-                        </motion.h2>
+                        <motion.h1 variants={fadeIn} className="section-heading mb-4">
+                            All Projects
+                        </motion.h1>
                         <motion.p variants={fadeIn} className="section-subtext">
-                            A curated showcase of engineering solutions, web applications, and creative visual projects.
+                            A complete list of my works, engineering solutions, web applications, and creative visual projects.
                         </motion.p>
                     </motion.div>
                 </div>
 
                 {/* Projects grid - Standard uniform layout */}
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
+                    animate="visible"
                     variants={staggerContainer}
                 >
-                    {projectsData.slice(0, 4).map((project) => (
+                    {projectsData.map((project) => (
                         <motion.div
                             key={project.id}
                             variants={scaleUp}
@@ -78,7 +81,7 @@ const Projects = () => {
                                 {/* Content area */}
                                 <div className="p-6 sm:p-8 flex flex-col flex-grow">
                                     <div>
-                                        <h3 className="font-heading text-xl sm:text-2xl font-bold text-surface-900 dark:text-white mb-3 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                                        <h3 className="font-heading text-xl font-bold text-surface-900 dark:text-white mb-3 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
                                             {project.title}
                                         </h3>
                                         <p className="text-surface-600 dark:text-surface-400 text-[0.95rem] leading-relaxed mb-6">
@@ -118,16 +121,9 @@ const Projects = () => {
                         </motion.div>
                     ))}
                 </motion.div>
-
-                {/* See more */}
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-16 flex justify-center">
-                    <Link to="/projects" className="btn-outline">
-                        See All Projects <ArrowRight size={18} />
-                    </Link>
-                </motion.div>
             </div>
         </section>
     );
 };
 
-export default Projects;
+export default ProjectsPage;

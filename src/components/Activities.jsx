@@ -52,7 +52,7 @@ const Activities = () => {
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-[560px]">
                         <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
                             <div className="accent-line" />
-                            <span className="text-[#1e3a8a] dark:text-[#60a5fa] font-heading font-semibold text-sm uppercase tracking-wider">Gallery</span>
+                            <span className="text-accent-600 dark:text-accent-400 font-heading font-semibold text-sm uppercase tracking-wider">Gallery</span>
                         </motion.div>
                         <motion.h2 variants={fadeIn} className="section-heading mb-4">
                             Activities & Moments
@@ -66,14 +66,14 @@ const Activities = () => {
                     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="hidden sm:flex gap-2">
                         <button 
                             onClick={() => scroll('left')} 
-                            className="p-3 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-500 dark:text-surface-400 hover:bg-[#1e3a8a]/5 dark:hover:bg-[#60a5fa]/10 hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] transition-all duration-300 active:scale-95 border border-surface-200/50 dark:border-surface-700/50"
+                            className="p-3 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-500 dark:text-surface-400 hover:bg-accent-500/10 dark:hover:bg-accent-400/10 hover:text-accent-600 dark:hover:text-accent-400 transition-all duration-300 active:scale-95 border border-surface-200/50 dark:border-surface-700/50"
                             aria-label="Scroll left"
                         >
                             <ChevronLeft size={20} />
                         </button>
                         <button 
                             onClick={() => scroll('right')} 
-                            className="p-3 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-500 dark:text-surface-400 hover:bg-[#1e3a8a]/5 dark:hover:bg-[#60a5fa]/10 hover:text-[#1e3a8a] dark:hover:text-[#60a5fa] transition-all duration-300 active:scale-95 border border-surface-200/50 dark:border-surface-700/50"
+                            className="p-3 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-500 dark:text-surface-400 hover:bg-accent-500/10 dark:hover:bg-accent-400/10 hover:text-accent-600 dark:hover:text-accent-400 transition-all duration-300 active:scale-95 border border-surface-200/50 dark:border-surface-700/50"
                             aria-label="Scroll right"
                         >
                             <ChevronRight size={20} />
@@ -103,7 +103,7 @@ const Activities = () => {
                                     src={activity.image} 
                                     alt={activity.title} 
                                     loading="lazy"
-                                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" 
+                                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
                                 />
                             ) : (
                                 <div className="absolute inset-0 w-full h-full" style={{ background: activity.bgGrad }} />

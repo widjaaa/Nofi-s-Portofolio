@@ -52,8 +52,8 @@ const StatItem = ({ icon: Icon, value, suffix, label, delay, isVisible }) => {
             transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="flex flex-col items-center text-center group"
         >
-            <div className="w-14 h-14 rounded-2xl bg-[#1e3a8a]/5 dark:bg-[#60a5fa]/10 border border-[#1e3a8a]/15 dark:border-[#60a5fa]/15 flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-glow dark:group-hover:shadow-none group-hover:bg-[#1e3a8a]/10 dark:group-hover:bg-[#60a5fa]/20">
-                <Icon size={24} className="text-[#1e3a8a] dark:text-[#60a5fa]" />
+            <div className="w-14 h-14 rounded-2xl bg-accent-500/10 dark:bg-accent-400/10 border border-accent-500/20 dark:border-accent-400/20 flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-accent-500/20 dark:group-hover:bg-accent-400/20">
+                <Icon size={24} className="text-accent-600 dark:text-accent-400" />
             </div>
             <div className="font-heading text-4xl sm:text-5xl font-bold text-surface-900 dark:text-white mb-1 tabular-nums">
                 {count}{suffix}

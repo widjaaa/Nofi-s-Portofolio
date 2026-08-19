@@ -28,6 +28,16 @@ export const projectsData = [
         liveSiteUrl: 'https://sandbox.papikost.my.id/',
         gradient: 'linear-gradient(135deg, #00b4db 0%, #0083b0 100%)',
         image: '/images/projects/papikost.webp',
+    },
+    {
+        id: 4,
+        title: 'More Projects Coming Soon',
+        description: 'Currently working on new and exciting projects. Stay tuned for more updates on my latest engineering solutions and creative works.',
+        tags: ['React', 'Next.js', 'Tailwind'],
+        githubUrl: 'https://github.com/widjaaa',
+        liveSiteUrl: '',
+        gradient: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+        image: '',
     }
 ];
 

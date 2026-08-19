@@ -43,20 +43,20 @@ const ExperienceImage = ({ src, alt }) => (
 // Card content component (reused for both sides)
 const ExperienceCard = ({ exp }) => (
     <div className="glass-card p-5 sm:p-6 rounded-xl hover:shadow-card-hover dark:hover:shadow-card-dark-hover transition-all duration-300 hover:-translate-y-0.5">
-        <span className="inline-block px-3 py-1 mb-3 text-xs font-heading font-semibold rounded-lg bg-[#1e3a8a]/5 dark:bg-[#60a5fa]/10 border border-[#1e3a8a]/20 dark:border-[#60a5fa]/20 text-[#1e3a8a] dark:text-[#60a5fa]">
+        <span className="inline-block px-3 py-1 mb-3 text-xs font-heading font-semibold rounded-lg bg-accent-500/10 dark:bg-accent-400/10 border border-accent-500/20 dark:border-accent-400/20 text-accent-600 dark:text-accent-400">
             {exp.date}
         </span>
         <h3 className="font-heading text-lg font-bold text-surface-900 dark:text-white mb-1">
             {exp.title}
             {exp.type && <span className="text-surface-400 dark:text-surface-500 font-normal text-base ml-1">{exp.type}</span>}
         </h3>
-        <p className="text-[#1e3a8a] dark:text-[#60a5fa] text-sm font-medium mb-3">
+        <p className="text-accent-600 dark:text-accent-400 text-sm font-medium mb-3">
             {exp.company}
         </p>
-        <ul className="text-[0.9rem] text-surface-500 dark:text-surface-400 space-y-2">
+        <ul className="text-[0.9rem] text-surface-600 dark:text-surface-400 space-y-2">
             {exp.points.map((point, i) => (
                 <li key={i} className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa] mt-2 shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent-500 dark:bg-accent-400 mt-2 shrink-0" />
                     {point}
                 </li>
             ))}
@@ -72,7 +72,7 @@ const Experience = () => {
                     {/* Section label */}
                     <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
                         <div className="accent-line" />
-                        <span className="text-[#1e3a8a] dark:text-[#60a5fa] font-heading font-semibold text-sm uppercase tracking-wider">Experience</span>
+                        <span className="text-accent-600 dark:text-accent-400 font-heading font-semibold text-sm uppercase tracking-wider">Experience</span>
                     </motion.div>
 
                     <motion.h2 variants={slideInLeft} className="section-heading mb-10">
@@ -82,10 +82,10 @@ const Experience = () => {
                     {/* Alternating Timeline */}
                     <div className="relative max-w-5xl mx-auto">
                         {/* Center line - visible on lg+ */}
-                        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#1e3a8a]/20 dark:bg-[#60a5fa]/20 -translate-x-1/2" />
+                        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-accent-500/20 dark:bg-accent-400/20 -translate-x-1/2" />
 
                         {/* Mobile line - left side */}
-                        <div className="lg:hidden absolute left-[15px] top-0 bottom-0 w-0.5 bg-[#1e3a8a]/20 dark:bg-[#60a5fa]/20" />
+                        <div className="lg:hidden absolute left-[15px] top-0 bottom-0 w-0.5 bg-accent-500/20 dark:bg-accent-400/20" />
 
                         <div className="flex flex-col gap-12 lg:gap-16">
                             {experiences.map((exp, index) => {
@@ -114,7 +114,7 @@ const Experience = () => {
 
                                             {/* Center Dot */}
                                             <div className="flex justify-center">
-                                                <div className="w-4 h-4 rounded-full border-[3px] border-[#1e3a8a] dark:border-[#60a5fa] bg-white dark:bg-surface-900 z-10" />
+                                                <div className="w-4 h-4 rounded-full border-[3px] border-accent-500 dark:border-accent-400 bg-white dark:bg-surface-900 z-10" />
                                             </div>
 
                                             {/* Right Column */}
@@ -134,7 +134,7 @@ const Experience = () => {
                                         {/* Mobile layout (< lg) - stacked left-aligned */}
                                         <div className="lg:hidden flex flex-col gap-4 pl-8">
                                             {/* Mobile Dot (on left line) */}
-                                            <div className="absolute left-[10px] top-8 w-[11px] h-[11px] rounded-full border-2 border-[#1e3a8a] dark:border-[#60a5fa] bg-white dark:bg-surface-900 z-10" />
+                                            <div className="absolute left-[10px] top-8 w-[11px] h-[11px] rounded-full border-2 border-accent-500 dark:border-accent-400 bg-white dark:bg-surface-900 z-10" />
 
                                             {/* Card */}
                                             <ExperienceCard exp={exp} />

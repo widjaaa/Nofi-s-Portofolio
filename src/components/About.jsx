@@ -90,19 +90,19 @@ const About = () => {
                     {/* Section label */}
                     <motion.div variants={fadeIn} className="flex items-center gap-3 mb-6">
                         <div className="accent-line" />
-                        <span className="text-[#1e3a8a] dark:text-[#60a5fa] font-heading font-semibold text-sm uppercase tracking-wider">About Me</span>
+                        <span className="text-accent-600 dark:text-accent-400 font-heading font-semibold text-sm uppercase tracking-wider">About Me</span>
                     </motion.div>
 
                     <motion.h2 variants={slideInLeft} className="section-heading mb-6">
                         Building digital experiences with <span className="gradient-text dark:hidden">purpose</span><span className="hidden dark:inline gradient-text-dark">purpose</span>
                     </motion.h2>
 
-                    <motion.div variants={fadeIn} className="text-surface-500 dark:text-surface-400 space-y-4 text-[1.05rem] leading-relaxed max-w-3xl">
+                    <motion.div variants={fadeIn} className="text-surface-600 dark:text-surface-400 space-y-4 text-[1.05rem] leading-relaxed max-w-3xl">
                         <p>
-                            I believe that great work is inherently invisible it allows users to accomplish their goals seamlessly. With a background deeply rooted in <strong className="font-semibold text-surface-800 dark:text-surface-200">Web Development</strong>, as well as a strong passion for <strong className="font-semibold text-surface-800 dark:text-surface-200">Graphic Design</strong> and <strong className="font-semibold text-surface-800 dark:text-surface-200">Photography/Videography</strong>, I bridge the gap between technical functionality and visual aesthetics.
+                            I believe that great work is inherently invisible it allows users to accomplish their goals seamlessly. With a background deeply rooted in <strong className="font-semibold text-surface-900 dark:text-surface-100">Web Development</strong>, as well as a strong passion for <strong className="font-semibold text-surface-900 dark:text-surface-100">Graphic Design</strong> and <strong className="font-semibold text-surface-900 dark:text-surface-100">Photography/Videography</strong>, I bridge the gap between technical functionality and visual aesthetics.
                         </p>
                         <p>
-                            Beyond writing code, I love capturing moments and creating compelling visual stories. Most of my creative portfolios and completed multimedia works are actively published on my social media channels, particularly on <a href="https://www.youtube.com/@nofiardimanw" target="_blank" rel="noopener noreferrer" className="text-[#1e3a8a] dark:text-[#60a5fa] font-semibold hover:underline underline-offset-4 decoration-[#1e3a8a]/30 hover:decoration-[#60a5fa] transition-colors">YouTube</a>.
+                            Beyond writing code, I love capturing moments and creating compelling visual stories. Most of my creative portfolios and completed multimedia works are actively published on my social media channels, particularly on <a href="https://www.youtube.com/@nofiardimanw" target="_blank" rel="noopener noreferrer" className="text-accent-600 dark:text-accent-400 font-semibold hover:underline underline-offset-4 decoration-accent-500/30 hover:decoration-accent-400 transition-colors">YouTube</a>.
                         </p>
                     </motion.div>
 
@@ -110,7 +110,7 @@ const About = () => {
                     <motion.div variants={fadeIn} className="mt-12">
                         <h3 className="font-heading text-lg mb-10 font-semibold text-surface-900 dark:text-white flex items-center gap-2">
                             Core Technologies
-                            <span className="w-2 h-2 rounded-full bg-[#1e3a8a] dark:bg-[#60a5fa]" />
+                            <span className="w-2 h-2 rounded-full bg-accent-500" />
                         </h3>
 
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">

@@ -79,14 +79,14 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 2px solid #1e3a8a;
+  border: 2px solid #d97706;
   background: #fff;
   z-index: 1;
 }
 
 .dark .timeline-node::before {
-  background: #000;
-  border-color: #60a5fa;
+  background: #0b0d10;
+  border-color: #fbbf24;
 }
 
 /* ===== Dot navigation ===== */
@@ -94,20 +94,20 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #cbd5e1;
+  background: #c5c0b6;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
-.dark .dot-nav-item { background: #334155; }
+.dark .dot-nav-item { background: #2a2e37; }
 
 .dot-nav-item.active {
   width: 24px;
   border-radius: 4px;
-  background: #1e3a8a; /* NAVY ACTIVE DOT */
+  background: #d97706;
 }
 
-.dark .dot-nav-item.active { background: #60a5fa; }
+.dark .dot-nav-item.active { background: #fbbf24; }
 
 /* ===== Input focus line sweep ===== */
 .input-sweep {
@@ -121,11 +121,11 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #1e3a8a; /* NAVY FOCUS LINE */
+  background: #d97706;
   transition: width 0.4s ease;
 }
 
-.dark .input-sweep::after { background: #60a5fa; }
+.dark .input-sweep::after { background: #fbbf24; }
 
 .input-sweep:focus-within::after {
   width: 100%;
@@ -144,12 +144,12 @@
   left: 0;
   width: 3px;
   height: 100%;
-  background: #1e3a8a; /* SOLID NAVY */
+  background: #d97706;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.dark .cert-card::before { background: #60a5fa; }
+.dark .cert-card::before { background: #fbbf24; }
 
 .cert-card:hover::before {
   opacity: 1;

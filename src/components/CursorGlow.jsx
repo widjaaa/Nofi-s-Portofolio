@@ -22,10 +22,12 @@ const CursorGlow = () => {
     }, []);
 
     useEffect(() => {
-        // Only show on devices with fine pointer (desktop/laptop)
+        // Only show on devices with fine pointer and no reduced motion preference
         const hasPointer = window.matchMedia('(pointer: fine)').matches;
-        setIsDesktop(hasPointer);
-        if (!hasPointer) return;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        setIsDesktop(hasPointer && !prefersReducedMotion);
+        if (!hasPointer || prefersReducedMotion) return;
 
         const handleMouseMove = (e) => {
             mouseRef.current.x = e.clientX;
@@ -45,7 +47,7 @@ const CursorGlow = () => {
         const ctx = canvas.getContext('2d');
         let animationFrameId;
         let lastFrameTime = 0;
-        const FRAME_INTERVAL = 33; // ~30fps (1000/30 ≈ 33ms)
+        const FRAME_INTERVAL = 33; // ~30fps
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -74,8 +76,8 @@ const CursorGlow = () => {
                 });
             }
 
-            // Limit trail length to 20 coordinates
-            if (pointsRef.current.length > 20) {
+            // Limit trail length to 16 coordinates (subtler trail)
+            if (pointsRef.current.length > 16) {
                 pointsRef.current.shift();
             }
 
@@ -84,14 +86,14 @@ const CursorGlow = () => {
                 ctx.lineCap = 'round';
                 ctx.lineJoin = 'round';
 
-                // Configure colors based on theme (using the site's exact blue colors)
-                const coreStroke = isCurrentDark ? 'rgba(255, 255, 255, ' : 'rgba(59, 130, 246, '; // White for dark, Brand Blue (#3b82f6) for light
-                const glowStroke = isCurrentDark ? 'rgba(96, 165, 250, ' : 'rgba(147, 197, 253, '; // Sky blue for dark, Soft Blue (#93c5fd) for light
+                // Warm Film Amber lens colors
+                const coreStroke = isCurrentDark ? 'rgba(255, 255, 255, ' : 'rgba(217, 119, 6, ';
+                const glowStroke = isCurrentDark ? 'rgba(251, 191, 36, ' : 'rgba(245, 158, 11, ';
                 
-                ctx.shadowBlur = isCurrentDark ? 10 : 3;
-                ctx.shadowColor = isCurrentDark ? 'rgba(96, 165, 250, 0.4)' : 'rgba(59, 130, 246, 0.15)';
+                ctx.shadowBlur = isCurrentDark ? 8 : 2;
+                ctx.shadowColor = isCurrentDark ? 'rgba(251, 191, 36, 0.35)' : 'rgba(217, 119, 6, 0.12)';
 
-                // 1. Draw outer blue glow trail
+                // 1. Draw outer amber glow trail
                 for (let i = 0; i < pointsRef.current.length - 1; i++) {
                     const p1 = pointsRef.current[i];
                     const p2 = pointsRef.current[i + 1];
@@ -101,16 +103,15 @@ const CursorGlow = () => {
                     ctx.moveTo(p1.x, p1.y);
                     ctx.lineTo(p2.x, p2.y);
 
-                    // Reduced opacity for softer look in light mode
-                    const opacityMultiplier = isCurrentDark ? 0.6 : 0.25;
+                    const opacityMultiplier = isCurrentDark ? 0.45 : 0.2;
                     ctx.strokeStyle = `${glowStroke}${ratio * opacityMultiplier})`;
-                    ctx.lineWidth = ratio * (isCurrentDark ? 8 : 7);
+                    ctx.lineWidth = ratio * (isCurrentDark ? 6 : 5);
                     ctx.stroke();
                 }
 
                 // 2. Draw inner core trail
-                ctx.shadowBlur = isCurrentDark ? 4 : 1;
-                ctx.shadowColor = isCurrentDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(59, 130, 246, 0.2)';
+                ctx.shadowBlur = isCurrentDark ? 3 : 1;
+                ctx.shadowColor = isCurrentDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(217, 119, 6, 0.2)';
                 for (let i = 0; i < pointsRef.current.length - 1; i++) {
                     const p1 = pointsRef.current[i];
                     const p2 = pointsRef.current[i + 1];
@@ -120,37 +121,36 @@ const CursorGlow = () => {
                     ctx.moveTo(p1.x, p1.y);
                     ctx.lineTo(p2.x, p2.y);
 
-                    // Reduced opacity for softer look in light mode
-                    const opacityMultiplier = isCurrentDark ? 0.9 : 0.4;
+                    const opacityMultiplier = isCurrentDark ? 0.85 : 0.35;
                     ctx.strokeStyle = `${coreStroke}${ratio * opacityMultiplier})`;
-                    ctx.lineWidth = ratio * 3; // Tapered core
+                    ctx.lineWidth = ratio * 2.5;
                     ctx.stroke();
                 }
 
-                ctx.shadowBlur = 0; // Reset shadow
+                ctx.shadowBlur = 0;
             }
 
-            // 3. Draw ambient radial glow centered on head (250px size -> 125px radius)
+            // 3. Draw ambient radial lens flare centered on cursor
             if (mouseRef.current.active) {
                 const gradient = ctx.createRadialGradient(
                     mouseRef.current.x, mouseRef.current.y, 0,
-                    mouseRef.current.x, mouseRef.current.y, 125
+                    mouseRef.current.x, mouseRef.current.y, 110
                 );
-                const glowOpacity = isCurrentDark ? 0.15 : 0.05; // Softer 5% opacity for light mode
-                const colorPrimary = isCurrentDark ? '96, 165, 250' : '59, 130, 246'; // Sky Blue (#60a5fa) for dark, Brand Blue (#3b82f6) for light
-                const colorSecondary = isCurrentDark ? '30, 58, 138' : '147, 197, 253'; // Navy for dark, Soft Blue for light
+                const glowOpacity = isCurrentDark ? 0.12 : 0.04;
+                const colorPrimary = isCurrentDark ? '251, 191, 36' : '217, 119, 6';
+                const colorSecondary = isCurrentDark ? '217, 119, 6' : '245, 158, 11';
 
                 gradient.addColorStop(0, `rgba(${colorPrimary}, ${glowOpacity})`);
-                gradient.addColorStop(0.4, `rgba(${colorSecondary}, ${glowOpacity * 0.5})`);
+                gradient.addColorStop(0.4, `rgba(${colorSecondary}, ${glowOpacity * 0.4})`);
                 gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
                 ctx.beginPath();
-                ctx.arc(mouseRef.current.x, mouseRef.current.y, 125, 0, Math.PI * 2);
+                ctx.arc(mouseRef.current.x, mouseRef.current.y, 110, 0, Math.PI * 2);
                 ctx.fillStyle = gradient;
                 ctx.fill();
             }
 
-            // Shrink trail if mouse stops moving or leaves window
+            // Shrink trail if mouse stops moving
             if (!mouseRef.current.active && pointsRef.current.length > 0) {
                 pointsRef.current.shift();
             }

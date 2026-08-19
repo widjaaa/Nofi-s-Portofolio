@@ -7,46 +7,57 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                heading: ['Space Grotesk', 'sans-serif'],
-                serif: ['Lora', 'serif'],
+                sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                heading: ['Syne', 'sans-serif'],
             },
             colors: {
-                // Navy Blue Palette
+                // Photography & Film Inspired Palette
+                'film-amber': '#d97706',
+                'darkroom-red': '#c84b31',
+                'obsidian-dark': '#0b0d10',
+                'paper-light': '#f7f6f3',
+                'film-slate': '#16191e',
+
+                // Warm Film Amber (Replacing generic SaaS blue)
                 accent: {
-                    50: '#eff6ff',
-                    100: '#dbeafe',
-                    200: '#bfdbfe',
-                    300: '#93c5fd',
-                    400: '#60a5fa',
-                    500: '#3b82f6',
-                    600: '#2563eb',
-                    700: '#1d4ed8',
-                    800: '#1e40af',
-                    900: '#1e3a8a', // Deep Navy
-                    950: '#172554', // Dark Navy
+                    50: '#fffbeb',
+                    100: '#fef3c7',
+                    200: '#fde68a',
+                    300: '#fcd34d',
+                    400: '#fbbf24',
+                    500: '#d97706', // Film Amber Main
+                    600: '#b45309', // High contrast text on light bg (WCAG AA > 4.5:1)
+                    700: '#92400e',
+                    800: '#78350f',
+                    900: '#451a03',
+                    950: '#291002',
                 },
+                // Darkroom Safelight Red / Terracotta (Replacing sky blue)
                 highlight: {
-                    50: '#f0f9ff',
-                    100: '#e0f2fe',
-                    200: '#bae6fd',
-                    300: '#7dd3fc',
-                    400: '#38bdf8',
-                    500: '#0ea5e9',
-                    600: '#0284c7',
+                    50: '#fef2f2',
+                    100: '#fee2e2',
+                    200: '#fecaca',
+                    300: '#fca5a5',
+                    400: '#f87171',
+                    500: '#c84b31', // Darkroom Red Main
+                    600: '#b91c1c',
+                    700: '#991b1b',
+                    800: '#7f1d1d',
+                    900: '#450a0a',
                 },
+                // Obsidian Studio Darkroom & Fine Art Paper Surface
                 surface: {
-                    50: '#f8fafc',
-                    100: '#f1f5f9',
-                    200: '#e2e8f0',
-                    300: '#cbd5e1',
-                    400: '#94a3b8',
-                    500: '#64748b',
-                    600: '#475569',
-                    700: '#334155',
-                    800: '#1e293b',
-                    900: '#0f172a',
-                    950: '#020617',
+                    50: '#f7f6f3',  // Studio paper light bg
+                    100: '#efece6', // Light card / surface
+                    200: '#e2dfd7', // Light border
+                    300: '#c5c0b6', // Muted light element
+                    400: '#8e95a5', // Silver halide muted text
+                    500: '#64748b', // Body secondary
+                    600: '#475569', // Body primary light
+                    700: '#2a2e37', // Dark border / divider
+                    800: '#16191e', // Film slate card dark
+                    900: '#0b0d10', // Obsidian dark bg
+                    950: '#050608', // Deepest background shadow
                 },
             },
             boxShadow: {
